@@ -23,3 +23,8 @@ Open [http://localhost:8080](http://localhost:8080) to view it in your browser.
 App default run at port 8080.\
 Config it by adding the environment variable Port to your \
 env file similar to my .env.example file.
+
+
+## Account Admin test
+email: admin@admin.com \
+password: admin

@@ -5,13 +5,14 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const path = require('path');
 const app = express();
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
+const host = process.env.HOST || "http://localhost"
 
 app.listen(port, ()=>{
-    console.log(`Server bắt đầu tại localhost:${port}`);
+    console.log(`Mở ứng dụng tại ${host}:${port}`);
 });
 
-// app.use('/api', createProxyMiddleware({ target: 'http://localhost:8081', changeOrigin: true}));
+// app.use('/api', createProxyMiddleware({ target: 'https://be-nmcnpm-17.herokuapp.com', changeOrigin: true}));
 
 app.use(express.static(path.join(__dirname, "/../frontend/build")));
 app.get("*", (req, res) => {

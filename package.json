@@ -1,10 +1,12 @@
 {
   "name": "nmcnpm_ck",
   "version": "1.0.0",
+  "proxy": "https://be-nmcnpm-17.herokuapp.com",
   "description": "Serminal NMCNPM",
   "main": "index.js",
   "scripts": {
     "start": "nodemon backend/server.js",
+    "build": "cd frontend && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -7,7 +7,7 @@ In the project directory, you can run:
 Install package.
 ### `npm run build`
 Install package to the `frontend` folder and builds the app \
-for production to the `frontend/build` folder.
+for production to the `frontend/build` folder.\
 It correctly bundles React in production mode and optimizes \
 the build for the best performance.
 

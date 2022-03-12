@@ -1,0 +1,29 @@
+{
+  "name": "nmcnpm_ck",
+  "version": "1.0.0",
+  "description": "Serminal NMCNPM",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoainguyen33/nmcnpm_ck.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hoainguyen33/nmcnpm_ck/issues"
+  },
+  "homepage": "https://github.com/hoainguyen33/nmcnpm_ck#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "http-proxy-middleware": "^2.0.3",
+    "path": "^0.12.7"
+  }
+}

@@ -20,4 +20,6 @@ code {
 body {
   margin: 0;
   font-family: circular-book;
+  min-height: 100vh;
+  min-width: 100vw;
 }

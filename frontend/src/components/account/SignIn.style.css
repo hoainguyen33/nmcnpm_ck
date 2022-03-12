@@ -1,0 +1,23 @@
+.form-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* height: 400px; */
+    width: 400px;
+    padding: 60px 20px;
+    background: #fff;
+    border-radius: 16px;
+    position: relative;
+}
+.form-item{
+    width: 100%;
+}
+.form-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.form-link{
+    text-decoration: none;
+}

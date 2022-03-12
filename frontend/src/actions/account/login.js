@@ -5,13 +5,14 @@ import {
     LOGIN_ACCOUNT_FAILED, LOGIN_ACCOUNT_REQUEST, LOGIN_ACCOUNT_SUCCESS
 } from '../../constants/account';
 
-// import account from '../../mock/account.json'
+import api from '../../api'
 
-export default (email, password) => dispatch => {
+export default (email, password) => async dispatch => {
     dispatch({type: LOGIN_ACCOUNT_REQUEST})
     try {
-        dispatch({type: LOGIN_ACCOUNT_SUCCESS, payload: "account"})
-        localStorage.setItem("token", "123")
+        const { data } = await api.post("/account/sign-in", { email, password })
+        dispatch({type: LOGIN_ACCOUNT_SUCCESS, payload: data})
+        localStorage.setItem("token", data?.token)
     } catch (ex) {
         dispatch({type: LOGIN_ACCOUNT_FAILED, error: ex})
     }

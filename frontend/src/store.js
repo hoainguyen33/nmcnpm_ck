@@ -7,7 +7,9 @@ const token = localStorage.getItem('token');
 
 const initialState = {
     account: {
-        token
+        info: {
+            token
+        }
     }
 };
 

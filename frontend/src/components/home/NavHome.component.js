@@ -1,5 +1,6 @@
 import './NavHome.style.css';
 import logo from '../../logo.svg'
+import logoUser from '../../icons/user.png'
 import { Link } from 'react-router-dom'
 import {
   Navbar,
@@ -8,11 +9,18 @@ import {
   Nav,
   Form,
   FormControl,
-  Button
+  Button,
+  Image
 } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
+import Modal from './ModalUser.component';
+import { useState } from 'react';
 
 export default function NavbarHome(props) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const account = useSelector(state=>state.account);
   const { info } = account;
   return (
@@ -35,7 +43,6 @@ export default function NavbarHome(props) {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Link className="nav-link" to="/home/infomation">Infomation</Link>
             <Link className="nav-link" to="/home/players">Players</Link>
             <Link className="nav-link" to="/home/teams">Teams</Link>
             <NavDropdown title="Service" id="navbarScrollingDropdown">
@@ -60,8 +67,18 @@ export default function NavbarHome(props) {
             />
             <Button variant="outline-success">Search</Button>
           </Form>
+          <Button className="nav-button-user" onClick={handleShow}>
+            <Image
+              className="nav-icon-user"
+              src={logoUser}
+              />
+          </Button>
         </Navbar.Collapse>
       </Container>
+      <Modal
+      show={show}
+        handleClose={handleClose}
+        />
     </Navbar>
   );
 }

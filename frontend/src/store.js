@@ -10,11 +10,16 @@ const initialState = {
         info: {
             token
         }
+    },
+    teams: {
+        columns: [],
+        data: []
     }
 };
 
 const reducer = combineReducers({
     account: reducers.Account,
+    teams: reducers.Team.List
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

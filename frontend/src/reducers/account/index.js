@@ -1,6 +1,7 @@
 import { 
     LOGIN_ACCOUNT_FAILED, LOGIN_ACCOUNT_REQUEST, LOGIN_ACCOUNT_SUCCESS,
-    CURRENT_USER_FAILED, CURRENT_USER_REQUEST, CURRENT_USER_SUCCESS
+    CURRENT_USER_FAILED, CURRENT_USER_REQUEST, CURRENT_USER_SUCCESS,
+    LOG_OUT_USER
 } from '../../constants/account';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -35,6 +36,10 @@ export default function(state={}, action){
                 loading: false,
                 error: action.error
             };
+        case LOG_OUT_USER:
+            return {
+
+            }
         default:
             return state;
     }

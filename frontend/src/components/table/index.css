@@ -1,0 +1,36 @@
+#button-tooltip-2 > .tooltip-inner {
+    background-color: #fff;
+    border-radius: 8px;
+    color: #000;
+    max-width: 450px;
+    border: 1px solid rgb(231, 218, 218);
+}
+  
+#button-tooltip-2 > .tooltip-arrow::before{
+    border-bottom-color: #fff;
+}
+.description {
+    height: 150px;
+    width: 450px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.description > div {
+    max-width: 300px;
+    height: 100%;
+    margin-right: 15px;
+    overflow-wrap: break-word;
+    text-align: start;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    text-transform: none;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+}
+
+.description-image {
+    height: 100%;
+    border-left: 1px solid rgb(141, 126, 126);
+}

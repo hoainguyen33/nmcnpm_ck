@@ -1,0 +1,144 @@
+{
+    "columns": [
+        {
+            "key": "stt",
+            "value": "STT"
+        },
+        {
+            "key": "name",
+            "value": "Tên Đội",
+            "link": true
+        },
+        {
+            "key": "num_player",
+            "value": "Số Cầu Thủ"
+        },
+        {
+            "key": "country",
+            "value": "Quốc Gia"
+        },
+        {
+            "key": "number_session",
+            "value": "Số Mùa Giải Tham Dự"
+        },
+        {
+            "key": "stage",
+            "value": "Các Giai Đoạn"
+        },
+        {
+            "key": "rank_last",
+            "value": "Xếp Hạng Gần Nhất"
+        },
+        {
+            "key": "rank_ever",
+            "value": "Xếp Hạng Cao Nhất"
+        },
+        {
+            "key": "supper_player",
+            "value": "Cầu Thủ Ghi Bàn Nhiều Nhất",
+            "link": true
+        }
+    ],
+    "data": [{
+        "stt": 1,
+        "name": {
+            "id": 1,
+            "path": "/home/team/",
+            "hover_title": "Liverpool",
+            "befor_title": "",
+            "after_title": "",
+            "description": {
+                "avatar": "https://upload.wikimedia.org/wikipedia/vi/thumb/0/0c/Liverpool_FC.svg/355px-Liverpool_FC.svg.png",
+                "names": ["Câu lạc bộ bóng đá Liverpool"],
+                "content": "là một câu lạc bộ bóng đá chuyên nghiệp có trụ sở tại Liverpool, Anh, hiện đang thi đấu ở Premier League, giải đấu hàng đầu của hệ thống bóng đá Anh. Ở trong nước, câu lạc bộ đã giành được 19 chức vô địch Ngoại hạng Anh, 7 FA Cup, kỷ lục 9 League Cup và 15 FA Community Shield. Trong các giải đấu quốc tế, câu lạc bộ đã giành được sáu Cúp C1 Châu Âu, nhiều hơn bất kỳ một câu lạc bộ Anh nào khác, ba Cúp UEFA, bốn Siêu cúp UEFA và một FIFA Club World Cup"
+            }
+        },
+        "num_player": 26,
+        "country": "Vương Quốc Anh",
+        "number_session": 27,
+        "stage": "1992-",
+        "rank_last": "2nd",
+        "rank_ever": "2nd",
+        "supper_player": {
+            "id": 1,
+            "path": "/home/player/",
+            "hover_title": "Robbie Fowler",
+            "befor_title": "",
+            "after_title": "(128)",
+            "description": {
+                "avatar": "https://upload.wikimedia.org/wikipedia/commons/6/64/Fowler%2C_Robbie.jpg",
+                "names": ["Robbie Fowler", "Robert Bernard \"Robbie\" Fowler"],
+                "content": "là một cựu cầu thủ bóng đá người Anh và cựu tuyển thủ đội tuyển bóng đá quốc gia Anh. Fowler được những người hâm mộ bóng đá biết đến khi còn chơi trong màu áo của Liverpool. Tại đây, Fowler ghi được tổng cộng 183 bàn thắng cho Liverpool, trong đó 128 đã ghi được tại Premier League. Sau đó anh chuyển sang chơi cho Leeds United và Manchester City, trước khi trở về Liverpool vào tháng 1 năm 2006."
+            }
+        }
+    },
+    {
+        "stt": 2,
+        "name": {
+            "id": 2,
+            "path": "/home/team/",
+            "hover_title": "Chelsea",
+            "befor_title": "",
+            "after_title": "",
+            "description": {
+                "avatar": "https://upload.wikimedia.org/wikipedia/vi/thumb/5/5c/Chelsea_crest.svg/480px-Chelsea_crest.svg.png",
+                "names": ["Câu lạc bộ bóng đá Chelsea"],
+                "content": "là một câu lạc bộ bóng đá chuyên nghiệp của Anh có trụ sở tại Fulham, London. Được thành lập vào năm 1905, câu lạc bộ hiện đang thi đấu tại Premier League, giải đấu hàng đầu của bóng đá Anh. Chelsea là một trong những câu lạc bộ thành công nhất nước Anh, giành được hơn 30 danh hiệu, bao gồm 6 chức vô địch quốc gia và 7 danh hiệu châu Âu. Sân nhà của họ là Stamford Bridge."
+            }
+        },
+        "num_player": 23,
+        "country": "Vương Quốc Anh",
+        "number_session": 27,
+        "stage": "1992-",
+        "rank_last": "3rd",
+        "rank_ever": "1st",
+        "supper_player": {
+            "id": 1,
+            "path": "/home/player/",
+            "hover_title": "Frank Lampard",
+            "befor_title": "",
+            "after_title": "(147)",
+            "description": {
+                "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Frank_Lampard_2019.jpg/334px-Frank_Lampard_2019.jpg",
+                "names": ["Frank James Lampard OBE"],
+                "content": "là một cựu cầu thủ bóng đá và là huấn luyện viên người Anh, hiện đang dẫn dắt câu lạc bộ Everton tại Premier League. Ông được xem là một trong những cầu thủ xuất sắc nhất lịch sử của Chelsea và là một trong những tiền vệ xuất sắc nhất trong thế hệ của mình."
+            }
+        }
+    },
+    {
+        "stt": 3,
+        "name": {
+            "id": 3,
+            "path": "/home/team/",
+            "hover_title": "Arsenal",
+            "befor_title": "",
+            "after_title": "",
+            "description": {
+                "avatar": "https://upload.wikimedia.org/wikipedia/vi/thumb/5/53/Arsenal_FC.svg/409px-Arsenal_FC.svg.png",
+                "names": ["Câu lạc bộ bóng đá Arsenal"],
+                "content": "là một câu lạc bộ bóng đá chuyên nghiệp có trụ sở tại Liverpool, Anh, hiện đang thi đấu ở Premier League, giải đấu hàng đầu của hệ thống bóng đá Anh. Ở trong nước, câu lạc bộ đã giành được 19 chức vô địch Ngoại hạng Anh, 7 FA Cup, kỷ lục 9 League Cup và 15 FA Community Shield. Trong các giải đấu quốc tế, câu lạc bộ đã giành được sáu Cúp C1 Châu Âu, nhiều hơn bất kỳ một câu lạc bộ Anh nào khác, ba Cúp UEFA, bốn Siêu cúp UEFA và một FIFA Club World Cup"
+            }
+        },
+        "num_player": 20,
+        "country": "Vương Quốc Anh",
+        "number_session": 27,
+        "stage": "1992-",
+        "rank_last": "5th",
+        "rank_ever": "1st",
+        "supper_player": {
+            "id": 3,
+            "path": "/home/player/",
+            "hover_title": "Thierry Henry",
+            "befor_title": "",
+            "after_title": "(175)",
+            "description": {
+                "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/2021_-_Centre_Stage_HM3_3946_%2851649869610%29.jpg/369px-2021_-_Centre_Stage_HM3_3946_%2851649869610%29.jpg",
+                "names": ["Thierry Daniel Henry"],
+                "content": "là một huấn luyện viên và cựu cầu thủ bóng đá người Pháp. Anh được coi là một trong những tiền đạo vĩ đại nhất mọi thời đại và là một trong những cầu thủ vĩ đại nhất lịch sử Premier League.[4] Trong năm 2003 và 2004, Henry là Á quân Cầu thủ xuất sắc nhất năm của FIFA và Quả bóng vàng châu Âu. Anh được vinh danh là Cầu thủ xuất sắc nhất năm của PFA hai lần, Cầu thủ xuất sắc nhất năm của FWA ba lần và sáu lần liên tiếp có tên trong Đội hình tiêu biểu của PFA. Anh cũng được xếp vào FIFA FIFPro World XI một lần và Đội hình của năm UEFA năm lần. Anh là một trong những cầu thủ bóng đá được tiếp thị nhiều nhất thập niên 2000. Henry là một trong hai cầu thủ đầu tiên được giới thiệu vào Đại sảnh Danh vọng Premier League năm 2021."
+            }
+        }
+    }],
+    "page": 1,
+    "pageSize": 10,
+    "total": 200
+}

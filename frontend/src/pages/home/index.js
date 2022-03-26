@@ -3,9 +3,11 @@ import { useEffect } from 'react';
 import { Route } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import {
-  Row
+  Row,
+  Container
 } from 'react-bootstrap'
 import Information from '../../layouts/account/Information.layout'
+import ListTeam from '../../layouts/team/List.layout'
 import NavbarHome from '../../components/home/NavHome.component' 
 
 export default function Home(props) {
@@ -18,13 +20,14 @@ export default function Home(props) {
    // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [info])
   return (
-    <div fluid className="home-page">
+    <Container fluid className="home-page">
       <Row>
         <NavbarHome />
       </Row>
       <Row>
         <Route path="/home/information" component={Information} />
+        <Route path="/home/teams" component={ListTeam} />
       </Row>
-    </div>
+    </Container>
   );
 }

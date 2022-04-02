@@ -1,0 +1,19 @@
+.champions-component{
+    width: auto;
+}
+.champions-creater{
+    background-color: #D6EDDB;
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 40px;
+}
+.champions-creater > div {
+    background-color: #29A94A;
+    padding: 4px 8px;
+    border-radius: 16px;
+}

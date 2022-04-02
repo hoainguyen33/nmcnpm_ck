@@ -1,0 +1,7 @@
+.cards-component{
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-rows: auto;
+    gap: 10px 20px;
+}

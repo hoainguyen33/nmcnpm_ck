@@ -43,7 +43,7 @@
         "stt": 1,
         "name": {
             "id": 1,
-            "path": "/home/team/",
+            "path": "/home/teams/",
             "hover_title": "Liverpool",
             "befor_title": "",
             "after_title": "",
@@ -61,7 +61,7 @@
         "rank_ever": "2nd",
         "supper_player": {
             "id": 1,
-            "path": "/home/player/",
+            "path": "/home/players/",
             "hover_title": "Robbie Fowler",
             "befor_title": "",
             "after_title": "(128)",
@@ -76,7 +76,7 @@
         "stt": 2,
         "name": {
             "id": 2,
-            "path": "/home/team/",
+            "path": "/home/teams/",
             "hover_title": "Chelsea",
             "befor_title": "",
             "after_title": "",
@@ -94,7 +94,7 @@
         "rank_ever": "1st",
         "supper_player": {
             "id": 1,
-            "path": "/home/player/",
+            "path": "/home/players/",
             "hover_title": "Frank Lampard",
             "befor_title": "",
             "after_title": "(147)",
@@ -109,7 +109,7 @@
         "stt": 3,
         "name": {
             "id": 3,
-            "path": "/home/team/",
+            "path": "/home/teams/",
             "hover_title": "Arsenal",
             "befor_title": "",
             "after_title": "",
@@ -127,7 +127,7 @@
         "rank_ever": "1st",
         "supper_player": {
             "id": 3,
-            "path": "/home/player/",
+            "path": "/home/players/",
             "hover_title": "Thierry Henry",
             "befor_title": "",
             "after_title": "(175)",

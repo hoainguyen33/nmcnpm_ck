@@ -6,14 +6,13 @@ import {
 export default function PaginationCompoment(props) {
   const last_page = Math.ceil(props.total / props.pageSize)
   const action = (page) => () =>{
-      console.log(page)
     props.action && props.action({
         page,
         pageSize: props.pageSize,
     })
   }
   return (
-    <Pagination>
+    <Pagination style={{padding: props.pd}}>
         {props.page !== 1 && [<Pagination.First onClick={action(1)} />,
             <Pagination.Prev onClick={action(props.page-1)} />,
             <Pagination.Item onClick={action(1)} >{1}</Pagination.Item>]}

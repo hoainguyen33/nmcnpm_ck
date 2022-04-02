@@ -1,0 +1,15 @@
+.nav-item-link{
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    height: 40px;
+    padding: 20px;
+    border-radius: 4px;
+}
+.nav-item-link:hover{
+    color: #fff;
+    background-color: #373b47;
+}

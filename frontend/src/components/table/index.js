@@ -17,7 +17,7 @@ export default function TableCompoment(props) {
         <thead>
             <tr>
             { props.columns &&
-              props.columns.map(e=><th>{e.value}</th>)
+              props.columns.map(e=><th class="text-center" align="center">{e.value}</th>)
             }
             </tr>
         </thead>

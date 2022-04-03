@@ -50,7 +50,7 @@ const HomeLayout = () => {
                 {
                     data.map((item, idx) => (
                         <Col xs={6}>
-                            <Card data={item} key={idx}></Card>
+                            <Card data={item} type="home" key={idx}></Card>
                         </Col>
                     ))
                 }

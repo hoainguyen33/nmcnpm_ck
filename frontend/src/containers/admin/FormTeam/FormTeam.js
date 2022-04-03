@@ -1,31 +1,26 @@
 import { Form, Input, DatePicker, Upload, Button, Row, Col } from 'antd';
-import moment from 'moment';
-import './FormLeage.style.scss'
-const formatDate = 'YYYY/MM/DD hh:mm A';
+import './FormTeam.style.scss';
 
 
-const FormLeage = (data) => {
-    const disabledDate = (current) => {
-        return current && current < moment().startOf('day');
-    }
+
+const FormTeam = (data) => {
     const onCancel = () => {
         data.setDisplay(false)
     }
     const onFinish = (values) => {
         console.log('values: ', values)
     }
-    console.log('sdfsdf: ', data)
     return (
         <div style={{height: '100%'}}>
             <Form
             layout='vertical'
             initialValues={ data?.initialValue && {
                     name: data?.initialValue?.name || null,
-                    startTime: moment(data?.initialValue?.startTime).local() || null,
-                    endTime: moment(data?.initialValue?.endTime).local() || null,
+                    pitch: data?.initialValue?.pitch || null,
+                    coach: data?.initialValue?.coach || null,
+                    urlImage: data?.initialValue?.urlImage || null
                 }
             }
-            scrollToFirstError
             onFinish={onFinish}
             >
                 <h1
@@ -35,52 +30,34 @@ const FormLeage = (data) => {
                         color: '#2566df',
                     }}
                 >
-                    {data?.type === 'create' ? 'Tạo mùa giải mới' : 'Chỉnh sửa mùa giải'}
+                    {data?.type === 'create' ? 'Tạo đội bóng mới' : 'Chỉnh sửa thông tin đội bóng'}
                 </h1>
                 <div className='content-form-field'>
                     <Form.Item
-                        label={'Tên mùa giải'}
+                        label={'Tên đội bóng'}
                         name='name'
                         rules={[{ required: true, message: 'Name required' }]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label={'Ngày bắt đầu'}
-                        name='startTime'
-                        rules={[{ required: true, message: 'Start Time required' }]}
+                        label={'Sân vận động'}
+                        name='pitch'
+                        rules={[{ required: true, message: 'Pitch required' }]}
                     >
-                        <DatePicker
-                        disabledDate={disabledDate}
-                        showTime
-                        size='large'
-                        style={{
-                            width: '100%'
-                        }}
-                        format={formatDate}
-                        >
-                        </DatePicker>
+                        <Input/>
                     </Form.Item>
                     <Form.Item
-                        label={'Ngày kết thúc'}
-                        name='endTime'
-                        rules={[{ required: true, message: 'End Time required' }]}
+                        label={'Huấn luyện viên'}
+                        name='coach'
+                        rules={[{ required: true, message: 'Coach required' }]}
                     >
-                        <DatePicker
-                        disabledDate={disabledDate}
-                        showTime
-                        size='large'
-                        format={formatDate}
-                        style={{
-                            width: '100%'
-                        }}
-                        >
-                        </DatePicker>
+                        <Input/>
                     </Form.Item>
                     <Form.Item
-                        label='Hình ảnh'
+                        label='Logo đội bóng'
                         name='img'
-                        rules={[{ required: true, message: 'Image required' }]}
+                        rules={[{ required: true, message: 'Logo required' }]}
                     >
                         <Input 
                             type='file'
@@ -97,7 +74,6 @@ const FormLeage = (data) => {
                                 }}
                             />
                         )}
-                        
                     </Form.Item>
                 </div>
                 <Form.Item>
@@ -127,4 +103,4 @@ const FormLeage = (data) => {
     )
 }
 
-export default FormLeage;
+export default FormTeam;

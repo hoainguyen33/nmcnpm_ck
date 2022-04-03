@@ -44,7 +44,7 @@ export default function NavbarHome(props) {
             navbarScroll
           >
             <Link className="nav-link" to="/home/players">Players</Link>
-            <Link className="nav-link" to="/home/teams">Teams</Link>
+            <Link className="nav-link" to="/home/team">Teams</Link>
             <NavDropdown title="Service" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/home/buy-ticker">
                 Buy Ticker

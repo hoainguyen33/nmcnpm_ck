@@ -1,6 +1,6 @@
 import './index.css'
 import { useEffect } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import {
   Row,
@@ -9,6 +9,7 @@ import {
 import Information from '../../layouts/account/Information.layout'
 import ListTeam from '../../layouts/team/List.layout'
 import NavbarHome from '../../components/home/NavHome.component' 
+import HomeLayout from '../../layouts/home/home'
 
 export default function Home(props) {
   const info = useSelector(state=>state.account.info)
@@ -25,8 +26,9 @@ export default function Home(props) {
         <NavbarHome />
       </Row>
       <Row>
+        <Route path="/" component={HomeLayout} />
         <Route path="/home/information" component={Information} />
-        <Route path="/home/teams" component={ListTeam} />
+        <Route path="/home/team" component={ListTeam} />
       </Row>
     </Container>
   );

@@ -12,6 +12,7 @@ import NavbarHome from '../../components/home/NavHome.component'
 import DashboardHome from '../../components/home/Dashboard.component';
 import { Search } from '../../route/route';
 import ListChampion from '../../layouts/champion/List.component';
+import HomeLayout from '../../layouts/home/home'
 
 export default function Home(props) {
   const info = useSelector(state=>state.account.info)
@@ -36,6 +37,7 @@ export default function Home(props) {
           </div>
         </Row>
         <Row className="home-content">
+          <Route path="/" component={HomeLayout} />
           <Route path="/home/information" component={Information} />
           <Route path="/home/teams" component={ListTeam} />
           <Route path="/home/champions" component={ListChampion} />

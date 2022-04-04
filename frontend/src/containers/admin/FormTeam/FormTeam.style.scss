@@ -1,0 +1,35 @@
+
+.content-form-field {
+    margin: 15px 0px;
+    padding: 0 10px;
+    flex: 1 0 auto;
+    overflow: auto;
+    height: calc(100% - 100px);
+}
+.button-confirm {
+    background: #2566df;
+    width: 80%;
+    display: block;
+    margin: auto;
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    color: white;
+}
+.button-confirm:hover, .button-confirm:focus {
+    background: #1351c4;
+    color: white;
+}
+.button-cancel {
+    background: red;
+    width: 80%;
+    margin: auto;
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    color: white;
+}
+.button-cancel:hover, .button-cancel:focus {
+    background: rgb(194, 2, 2);
+    color: white;
+}

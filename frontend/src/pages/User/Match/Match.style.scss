@@ -1,0 +1,26 @@
+.match-wrapper {
+    background: url('../../../../public/bg.png') no-repeat;
+    background-size: cover;
+    .content-match {
+        display: flex;
+        flex-direction: column;
+        animation: floatBubble 1s normal ease-out;
+    position: relative;
+    }
+    .header {
+        justify-content: center;
+        .title {
+            font-size: 30px;
+            margin-top: 20px;
+        }
+    }
+    
+}
+@keyframes floatBubble {
+    0% {
+        top:500px;
+    }
+    100% {
+        top: 0px;
+    }
+}

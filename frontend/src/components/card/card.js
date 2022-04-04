@@ -4,6 +4,7 @@ import { Button, Row, Col } from 'antd'
 import FormLeage from '../../containers/admin/FormLeage/FormLeage';
 import FormTeam from '../../containers/admin/FormTeam/FormTeam';
 import DrawerWrapper from '../drawer/drawer';
+import { Link } from 'react-router-dom'
 
 const initialDataHome = {
     name: 'Mùa 1', 
@@ -29,7 +30,10 @@ const Card = (data) => {
             <p>{data.data.name}</p>
             <img className='img-logo' src={data?.data?.img}/>
             <p style={{fontWeight: 'normal', fontSize: '20px'}}>{data.data?.pitch}</p>
-            <Button type="primary" shape="round" onClick={handleClick}>Xem chi tiết</Button>
+            <Link style={{width: '100%'}} to={`/detail-teams?teamId=${data.data?.id}`}>
+                <Button  style={{ width: '100%'}} type="primary" shape="round">Xem chi tiết</Button>
+            </Link>
+            <Button style={{margin: '10px 0px'}} type="primary" shape="round" onClick={handleClick}>Chỉnh sửa</Button>
             <DrawerWrapper 
                 child={data?.type === 'home' ? 
                     <FormLeage setDisplay={setVisible} initialValue={initialDataHome} type={'edit'}/>

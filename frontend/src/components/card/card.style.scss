@@ -1,0 +1,21 @@
+.wrapper-card {
+    border: 1px solid;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    .img-logo {
+        width: 150px;
+        height: auto;
+        margin: 10px auto;
+        
+    }
+    p {
+        margin: 0;
+        text-align: center;
+        font-size: 25px;
+        font-weight: bold;
+    }
+}

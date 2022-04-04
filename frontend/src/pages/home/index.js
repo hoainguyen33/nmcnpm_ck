@@ -14,6 +14,7 @@ import { Search } from '../../route/route';
 import ListChampion from '../../layouts/champion/List.component';
 import HomeLayout from '../../layouts/home/home'
 
+
 export default function Home(props) {
   const info = useSelector(state=>state.account.info)
   const paths = Search(props.location.pathname.split("/").slice(1))

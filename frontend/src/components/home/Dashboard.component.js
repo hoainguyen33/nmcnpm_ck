@@ -10,6 +10,7 @@ import iconTeam from '../../icons/icon-team.svg'
 import iconPlayer from '../../icons/icon-player.svg'
 import iconMenu from '../../icons/icon-menu.svg'
 import iconRight from '../../icons/icon-right.svg'
+import iconLogout from '../../icons/icon-logout.svg'
 import { useState } from 'react';
 
 export default function DashboardHome(props) {
@@ -58,6 +59,11 @@ export default function DashboardHome(props) {
           title="Players"
           hover={props.path === "/home/players"}
           to="/home/players"
+          isShow={isShow}
+          />
+        <NavItem
+          logo={iconLogout}
+          title="Logout"
           isShow={isShow}
           />
       </Nav>

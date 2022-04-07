@@ -39,11 +39,11 @@ export default function App() {
             <Row>
               <NavbarHome />
             </Row>
-            <Row>
+            {/* <Row>
               <div className="home-route">
                 { paths.map((e, i)=><span><Link to={e.path}>{e.title}</Link>{i + 1 !== paths.length && " > "}</span>) }
               </div>
-            </Row>
+            </Row> */}
             <Row className="home-content">
               <Route path='/team' component={TeamPage} />
               <Route path='/' exact>

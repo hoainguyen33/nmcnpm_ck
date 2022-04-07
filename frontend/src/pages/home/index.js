@@ -11,9 +11,9 @@ import ListTeam from '../../layouts/team/List.layout'
 import NavbarHome from '../../components/home/NavHome.component' 
 import DashboardHome from '../../components/home/Dashboard.component';
 import { Search } from '../../route/route';
-import ListChampion from '../../layouts/champion/List.component';
+// import ListChampion from '../../layouts/champion/List.component';
 import HomeLayout from '../../layouts/home/home'
-
+import ListChampion from '../../layouts/home/home';
 
 export default function Home(props) {
   const info = useSelector(state=>state.account.info)

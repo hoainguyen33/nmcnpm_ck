@@ -49,7 +49,7 @@ const HomeLayout = () => {
             <Row justify='center'>
                 {
                     data.map((item, idx) => (
-                        <Col xs={6}>
+                        <Col xs={24} md={8} lg={6}>
                             <Card data={item} type="home" key={idx}></Card>
                         </Col>
                     ))

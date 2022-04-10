@@ -8,15 +8,19 @@ import { useState } from 'react';
 import FormLeage from '../../containers/admin/FormLeage/FormLeage';
 const data = [
     {
+        id : 1,
         name: 'Mùa giải 1',
         img: './logo.png'
     }, {
+        id : 2,
         name: 'Mùa giải 2',
         img: './logo.png'
     }, {
+        id : 3,
         name: 'Mùa giải 3',
         img: './logo.png'
     }, {
+        id : 4,
         name: 'Mùa giải 4',
         img: './logo.png'
     }
@@ -50,7 +54,7 @@ const HomeLayout = () => {
                 {
                     data.map((item, idx) => (
                         <Col xs={24} md={8} lg={6}>
-                            <Card data={item} type="home" key={idx}></Card>
+                            <Card data={item} type="home" to={`/champions/${item.id}`} key={idx}></Card>
                         </Col>
                     ))
                 }

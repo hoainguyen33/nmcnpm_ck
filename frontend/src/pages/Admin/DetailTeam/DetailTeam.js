@@ -10,9 +10,10 @@ const data = {
     coach: 'Sir Alex',
 }
 
-const DetailTeam = () => {
-    const queryParams = new URLSearchParams(window.location.search)
-    const term = queryParams.get("teamId")
+const DetailTeam = (props) => {
+    // const queryParams = new URLSearchParams(window.location.search)
+    // const term = queryParams.get("teamId")
+    const term = props.match.params.id
     return (
         <div className="wrapper-detail-team">
             <h1>Thông tin chi tiết đội bóng</h1>

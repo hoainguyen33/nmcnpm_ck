@@ -1,24 +1,24 @@
 const route = {
-    path: "/home",
+    path: "",
     title: "HOME",
     routes: [
+        // {
+        //     path: "/champions",
+        //     title: "CHAMPIONS",
+        //     routes: [
+        //         // {
+        //         //     path: "/home/champions",
+        //         //     title: "LIST",
+        //         // },
+        //         {
+        //             path: "/home/champions/:id",
+        //             title: "GET",
+        //             redux: "champion"
+        //         },
+        //     ]
+        // },
         {
-            path: "/home/champions",
-            title: "CHAMPIONS",
-            routes: [
-                // {
-                //     path: "/home/champions",
-                //     title: "LIST",
-                // },
-                {
-                    path: "/home/champions/:id",
-                    title: "GET",
-                    redux: "champion"
-                },
-            ]
-        },
-        {
-            path: "/home/teams",
+            path: "/team",
             title: "TEAMS",
             routes: [
                 // {
@@ -26,14 +26,14 @@ const route = {
                 //     title: "LIST",
                 // },
                 {
-                    path: "/home/teams/:id",
+                    path: "/team/:id",
                     title: "GET",
                     redux: "team"
                 },
             ]
         },
         {
-            path: "/home/players",
+            path: "/player",
             title: "PLAYERS",
             routes: [
                 // {
@@ -41,7 +41,7 @@ const route = {
                 //     title: "LIST",
                 // },
                 {
-                    path: "/home/players/:id",
+                    path: "/player/:id",
                     title: "GET",
                     redux: "player"
                 },
@@ -51,11 +51,10 @@ const route = {
 }
 
 export function Search(paths) {
-    var to = "", result = [], r = route
-    if (!paths[0]) {
-        return result
+    if (paths.length === 0) {
+        return []
     }
-    to = to + "/" + paths[0]
+    var to = paths[0], result = [], r = route
     if (r.path !== to) {
         return result
     }
@@ -66,7 +65,7 @@ export function Search(paths) {
         redux : r.redux,
     })
     r = r.routes
-    if (slice[0]) {
+    if (slice.length > 0) {
         to = to + "/" + slice[0]
     }
     for (let path in slice) {

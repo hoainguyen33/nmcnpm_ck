@@ -4,13 +4,6 @@
     height: 100vh;
 }
 
-.home-route {
-    border-bottom: 3px solid #868991;
-    padding: 20px;
-}
-.home-route > span > a {
-    text-decoration: none;
-}
 .home-content{
     background-color: #f1f2f7;
     height: calc(100% - 127px);

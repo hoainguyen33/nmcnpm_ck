@@ -1,0 +1,7 @@
+.home-route {
+    border-bottom: 3px solid #868991;
+    padding: 20px;
+}
+.home-route > span > a {
+    text-decoration: none;
+}

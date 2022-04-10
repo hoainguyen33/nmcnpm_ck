@@ -25,7 +25,7 @@ export default function NavbarHome(props) {
       variant="dark"
       expand="lg"
       >
-      <Container fluid={!info}>
+      <div style={{height: '44px'}} className="nav-home-component">
         <Navbar.Collapse id="navbarScroll">
           <Form className="d-flex">
             <FormControl
@@ -36,14 +36,14 @@ export default function NavbarHome(props) {
             />
             <Button variant="outline-success">Search</Button>
           </Form>
-          <Button className="nav-button-user" onClick={handleShow}>
-            <Image
-              className="nav-icon-user"
-              src={logoUser}
-              />
-          </Button>
         </Navbar.Collapse>
-      </Container>
+        <Button className="nav-button-user" onClick={handleShow}>
+          <Image
+            className="nav-icon-user"
+            src={logoUser}
+            />
+        </Button>
+      </div>
       <Modal
       show={show}
         handleClose={handleClose}

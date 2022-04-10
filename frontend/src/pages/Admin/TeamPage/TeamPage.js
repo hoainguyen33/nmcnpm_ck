@@ -68,7 +68,7 @@ const TeamPage = () => {
                 {
                     data.map((item, idx) => (
                         <Col xs={6}>
-                            <Card data={item} type="team" key={idx}></Card>
+                            <Card data={item} type="team" to={`/team/${item.id}`} key={idx}></Card>
                         </Col>
                     ))
                 }

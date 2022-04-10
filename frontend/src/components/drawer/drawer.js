@@ -8,6 +8,9 @@ const DrawerWrapper = (data) => {
     useEffect(() => {
         console.log('hello: ', data)
         setShow(data.display)
+        return ()=>{
+          // end  
+        }
     }, [data.display])
 
     const handleClose = () => {

@@ -1,5 +1,10 @@
-.navbar-collapse {
+.nav-home-component {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
+    width: 100%;
+    padding: 0px 24px;
 }
 .nav-icon-user{
     height: 30px;
@@ -11,4 +16,13 @@
 
 .nav-search{
     font-family:Arial, FontAwesome;
+}
+.navbar {
+    height: 60px;
+}
+
+@media (max-width: 992px) {
+    .nav-home-component {
+        justify-content: flex-end;
+    }
 }

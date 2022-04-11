@@ -99,3 +99,163 @@ export const columns = [
         } 
     }
 ]
+
+export const columnPlayers = [
+    {
+        title: 'Player',
+        dataIndex: 'id',
+        key: 'id',
+        width: 100,
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    },{
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    }, {
+        title: 'Avatar',
+        dataIndex: 'avatar',
+        key: 'avatar',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <img src={value} style={{width: '50px', height: 'auto'}}/>
+            )
+        }
+    }, {
+        title: 'Sex',
+        dataIndex: 'sex',
+        key: 'sex',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    }, {
+        title: 'Age',
+        dataIndex: 'age',
+        key: 'age',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    }, {
+        title: 'yearJoining',
+        dataIndex: 'yearJoining',
+        key: 'yearJoining',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    }, {
+        title: 'Born',
+        dataIndex: 'born',
+        key: 'born',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    }
+]
+
+export const columnSchedule = [
+    {
+        title: 'Match',
+        dataIndex: 'id',
+        key: 'id',
+        width: 100,
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    }, {
+        title: 'Logo1',
+        dataIndex: 'logo',
+        key: 'logo',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <img src={value} style={{width: '50px', height: 'auto'}}/>
+            )
+        }
+    }, {
+        title: 'Team 1',
+        dataIndex: 'name',
+        key: 'name',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    }, {
+        title: 'VS',
+        dataIndex: 'vs',
+        key: 'vs',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>vs</span>
+            )
+        }
+    }, {
+        title: 'Logo 2',
+        dataIndex: 'logoCompetitor',
+        key: 'logoCompetitor',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <img src={value} style={{width: '50px', height: 'auto'}}/>
+            )
+        }
+    }, {
+        title: 'Team 2',
+        dataIndex: 'competitor',
+        key: 'competitor',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    }, {
+        title: 'Pitch',
+        dataIndex: 'pitch',
+        key: 'pitch',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    }, {
+        title: 'Date',
+        dataIndex: 'date',
+        key: 'date',
+        align: 'center',
+        render: (value, record) => {
+            return (
+                <span>{value}</span>
+            )
+        }
+    }
+]

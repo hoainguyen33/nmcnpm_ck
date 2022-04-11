@@ -20,7 +20,7 @@ export default function DashboardHome(props) {
       className={isShow ? "dashboard left" : 'dashboard'}
       style={{width: isShow? "80px" : undefined}}
     >
-       <Link to="/">
+       <Link to="/home">
           <img
             src={logo}
             width={isShow ? "30": "40"}
@@ -43,8 +43,8 @@ export default function DashboardHome(props) {
         <NavItem
           logo={iconChamp}
           title="Champions"
-          hover={props.path === ""}
-          to="/"
+          hover={props.path === "/home"}
+          to="/home"
           isShow={isShow}
           />
         <NavItem
@@ -57,8 +57,8 @@ export default function DashboardHome(props) {
         <NavItem
           logo={iconPlayer}
           title="Players"
-          hover={props.path === "/player"}
-          to="/player"
+          hover={props.path === "/home/players"}
+          to="/players"
           isShow={isShow}
           />
         <NavItem

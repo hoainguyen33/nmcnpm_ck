@@ -58,7 +58,7 @@ export default function DashboardHome(props) {
           logo={iconPlayer}
           title="Players"
           hover={props.path === "/home/players"}
-          to="/home/players"
+          to="/players"
           isShow={isShow}
           />
         <NavItem

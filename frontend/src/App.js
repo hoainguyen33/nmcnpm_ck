@@ -13,8 +13,9 @@ import Account from './pages/account';
 import TeamPage from './pages/Admin/TeamPage/TeamPage'
 import Match from './pages/Admin/Match/Match'
 import MatchUser from './pages/User/Match/Match'
+import Players from './pages/Admin/Players/Players'
 import DetailTeam from './pages/Admin/DetailTeam/DetailTeam'
-
+import DetailChampion from './pages/Admin/DetailChampion/DetailChampion'
 import NavbarHome from './components/home/NavHome.component' 
 import DashboardHome from './components/home/Dashboard.component';
 import { Search } from './route/route';
@@ -51,7 +52,9 @@ export default function App() {
               </Route>
               <Route path='/home' component={Home} />
               <Route path='/detail-teams' component={DetailTeam} />
+              <Route path='/detail-champion' component={DetailChampion}/>
               <Route path='/match' component={Match} />
+              <Route path='/players' component={Players}/>
             </Row>
           </Container>
         </div>

@@ -1,0 +1,12 @@
+.wrapper-player {
+    .content-players {
+        .tool-filter { 
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+        .main-content {
+            margin: 20px 0px;
+        }
+    }
+}

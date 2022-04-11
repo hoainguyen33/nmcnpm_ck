@@ -1,10 +1,12 @@
 .wrapper-card {
-    border: 1px solid;
     padding: 10px;
     margin: 10px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    transition: top ease 0.5s;
+    top: 0;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     .img-logo {
         width: 150px;
@@ -18,4 +20,7 @@
         font-size: 25px;
         font-weight: bold;
     }
+}
+.wrapper-card:hover {
+    top: -10px;
 }

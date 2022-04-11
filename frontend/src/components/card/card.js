@@ -30,9 +30,15 @@ const Card = (data) => {
             <p>{data.data.name}</p>
             <img className='img-logo' src={data?.data?.img}/>
             <p style={{fontWeight: 'normal', fontSize: '20px'}}>{data.data?.pitch}</p>
-            <Link style={{width: '100%'}} to={`/detail-teams?teamId=${data.data?.id}`}>
-                <Button  style={{ width: '100%'}} type="primary" shape="round">Xem chi tiết</Button>
-            </Link>
+            {data?.type === 'home' ? 
+                <Link style={{width: '100%'}} to={`/detail-champion?championId=${data.data?.id}`}>
+                    <Button  style={{ width: '100%'}} type="primary" shape="round">Xem chi tiết</Button>
+                </Link> : 
+                <Link style={{width: '100%'}} to={`/detail-teams?teamId=${data.data?.id}`}>
+                    <Button  style={{ width: '100%'}} type="primary" shape="round">Xem chi tiết</Button>
+                </Link> 
+            }
+            
             <Button style={{margin: '10px 0px'}} type="primary" shape="round" onClick={handleClick}>Chỉnh sửa</Button>
             <DrawerWrapper 
                 child={data?.type === 'home' ? 

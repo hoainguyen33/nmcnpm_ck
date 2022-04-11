@@ -1,0 +1,60 @@
+.main-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 300px;
+    padding: 10px;
+    margin: 10px;
+    color: black;
+    cursor: pointer;
+    border-radius: 20px;
+    background-image: linear-gradient(to bottom right, rgb(0, 89, 255), yellow);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+    img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: contain;
+        background: white;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    .name-pos {
+        display: flex;
+        gap: 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    h1 {
+        font-size: 50px;
+    }
+    p {
+        font-weight: bold;
+        font-size: 20px;
+    }
+}
+.main-card:hover{ 
+    top: -10px;
+}
+
+.modal-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+        height: 200px;
+    }
+    .name-pos {
+        display: flex;
+        gap: 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    p {
+        font-size: 18px;
+    }
+}

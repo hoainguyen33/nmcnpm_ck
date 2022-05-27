@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Account
+from .models import *
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework import status
@@ -56,9 +56,8 @@ def login(request):
     auth_token = jwt.encode({'id': user.id}, settings.JWT_SECRET_KEY)
     data = {"username": user.username, "access-token": auth_token}
     return JsonResponse(status=status.HTTP_200_OK, data= {"status": status.HTTP_200_OK, "success": True, 'message': 'Đăng nhập thành công', 'details': data})  
-     
+
+
+'''CRUD API for Season'''
+#def create_season(request):
   
-#delete
-def delete(request):
-  Account.objects.all().delete()
-  return JsonResponse(data={"message": "Xóa thành công"})

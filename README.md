@@ -1,5 +1,5 @@
 ### nmcnpm_ck
-# Getting Started with Nodejs, Reactjs, Bootstrap
+# Getting Started with Django, HTML, CSS, JS, Bootstrap
 This project was bootstrapped with [NPM Init](https://docs.npmjs.com/cli/v8/commands/npm-init), [Create React App](https://github.com/facebook/create-react-app) and Design with [React Bootstrap](https://react-bootstrap.github.io/)
 ## Available Scripts
 In the project directory, you can run:

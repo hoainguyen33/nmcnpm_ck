@@ -1,30 +1,50 @@
-### nmcnpm_ck
-# Getting Started with Django, HTML, CSS, JS, Bootstrap
-This project was bootstrapped with [NPM Init](https://docs.npmjs.com/cli/v8/commands/npm-init), [Create React App](https://github.com/facebook/create-react-app) and Design with [React Bootstrap](https://react-bootstrap.github.io/)
-## Available Scripts
-In the project directory, you can run:
-### `npm install`
-Install package.
-### `npm run build`
-Install package to the `frontend` folder and builds the app \
-for production to the `frontend/build` folder.\
-It correctly bundles React in production mode and optimizes \
-the build for the best performance.
+# Đồ án Quản lý giải vô địch bóng đá
+## Giới thiệu đồ án: 
+Ứng dụng được nhóm em xây dựng nhằm mục đích quản lý giải thi đấu bóng đá (quy mô nhỏ). Bao gồm các chức năng quản lý thông tin cầu thủ tham dự giải, thông tin đội bỏng tham gia giải đấu, quản lý giải đấu, trận đấu. Xây dựng giao diện cho người dùng nắm bắt thông tin giải đấu, cầu thủ, đội bóng và các trận đấu, cũng như cung cấp công cụ quản lý cho ban tổ chức giải đấu. 
+## Tham khảo các project có liên quan
+Các project tham khảo:
+- [Tham khảo về phần fontend](https://www.youtube.com/watch?v=pl8s9aRRZL8)
+## Môi trường thực thi
+- Devtools: redux
+- Hệ điều hành: Windows 11
+- Cơ sở dữ liệu: Postgresql
+- API: postman
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-### `npm start`
-Runs the app in the development mode.\
-Open [http://localhost:8080](http://localhost:8080) to view it in your browser.
-
+## Hướng dẫn cấu hình project chạy local PC
+### Frontend:
+Project này bootstrap bởi [NPM Init](https://docs.npmjs.com/cli/v8/commands/npm-init), [Create React App](https://github.com/facebook/create-react-app) và Design bởi [React Bootstrap](https://react-bootstrap.github.io/)
+### Cấu hình
+Ở project này, bạn có thể:
+#### `npm install`
+Để tải package
+#### `npm run build`
+Cài đặt package vào thư mục `frontend` và build ứng dụng vào thư mục `fronted/build`. 
+Xem để biết thêm thông tin [deployment](https://facebook.github.io/create-react-app/docs/deployment).
+### npm start
+khởi chạy app dưới chế độ developemnt
+Mở [http://localhost:8080](http://localhost:8080) để thấy giao diện trên browser.
 ## Config
-App default run at port 8080.\
-Config it by adding the environment variable Port to your \
-env file similar to my .env.example file.
-
+Ứng dụng mặc định prort là 8080.\
 
 ## Account Admin test
 email: admin@admin.com \
 password: admin
+### Backend:
+1. Clone repo 
+2. Setup môi trường ảo
+ `pip install virtualenv` tạo mtr ảo: python -m <tên mtruong ảo> activate: <tên mtr ảo>/Scripts/activate
+3. Migrate database
+ `python manage.py makemigrations`
+ `python manage.py migrate`
+4. Chạy server dưới local
+ `python manage.py runserver`
+## Hướng dẫn deploy project lên Heroku
+Updating...
+## Current status:
+- Xây dựng phần frontend.
+- Schema PostgreSQL.
+- Login/ Register.
+- CRUD cầu thủ
+## Future works
+- CRUD mùa giải 
+- CRUD đội bóng

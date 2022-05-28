@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
+
 # Create your models here.
 
 #User model
@@ -10,7 +11,7 @@ class Account(models.Model):
   role = models.CharField(max_length=10,null=False)
   
   def __str__(self):
-    return self.username  
+    return self.username
  
 #Season model 
 class Season(models.Model):
@@ -58,6 +59,4 @@ class Season_Detail(models.Model):
   season = models.ForeignKey(Season, on_delete=models.CASCADE)
   team = models.ForeignKey(Team, on_delete=models.CASCADE)
   reported_by = models.ForeignKey(Account, on_delete=models.CASCADE)
-
-  
   

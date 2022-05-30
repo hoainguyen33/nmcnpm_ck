@@ -16,11 +16,11 @@ class Account(models.Model):
 #Season model 
 class Season(models.Model):
   name = models.CharField(max_length=200, unique=True)
-  logo = models.CharField(max_length=200, null=True, blank=True)
+  logo = models.CharField(max_length=200, blank=True, null=True)
   start_date = models.DateField()
   end_date = models.DateField()
   max_numbers_of_teams = models.PositiveIntegerField()
-  rank = ArrayField(models.CharField(max_length=100))
+  rank = ArrayField(models.CharField(max_length=100), blank=True, null=True)
   reported_by = models.ForeignKey(Account, on_delete=models.CASCADE)
   
   def __str__(self):
@@ -59,4 +59,3 @@ class Season_Detail(models.Model):
   season = models.ForeignKey(Season, on_delete=models.CASCADE)
   team = models.ForeignKey(Team, on_delete=models.CASCADE)
   reported_by = models.ForeignKey(Account, on_delete=models.CASCADE)
-  

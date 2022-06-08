@@ -1,9 +1,8 @@
-import  Cookies  from 'universal-cookie';
 import axios from "axios";
 import queryString from "query-string"
 
 const axiosClient = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_END_POINT,
+    baseURL: process.env.REACT_APP_END_POINT,
     headers: {
         "content-type": "application/json",
     },
@@ -23,6 +22,7 @@ axiosClient.interceptors.response.use((response) => {
     // if (response && response.data) {
     //     return response.data;
     // }
+    console.log('sdfsdf')
     return response;
 }, (error) => {
     throw error;

@@ -5,42 +5,14 @@ import './TeamPage.style.scss'
 import Card from '../../../components/card/card'
 import DrawerWrapper from '../../../components/drawer/drawer';
 import FormTeam from '../../../containers/admin/FormTeam/FormTeam';
+import useSWR from 'swr';
+import { fetcher } from '../../../api/swr'
 
-const data = [
-    {
-        id: 1,
-        name: 'Manchester United', 
-        img: './logoMu.jpeg',
-        pitch: 'Old Trafford'
-    }, {
-        id: 2,
-        name: 'Manchester United', 
-        img: './logoMu.jpeg',
-        pitch: 'Old Trafford'
-    }, {
-        id: 3,
-        name: 'Manchester United', 
-        img: './logoMu.jpeg',
-        pitch: 'Old Trafford'
-    }, {
-        id: 4,
-        name: 'Manchester United', 
-        img: './logoMu.jpeg',
-        pitch: 'Old Trafford'
-    }, {
-        id: 5,
-        name: 'Manchester United', 
-        img: './logoMu.jpeg',
-        pitch: 'Old Trafford'
-    }, {
-        id: 6,
-        name: 'Manchester United', 
-        img: './logoMu.jpeg',
-        pitch: 'Old Trafford'
-    }
-]
+
 const TeamPage = () => {
     const [visible, setVisible] = useState(false);
+    const { data: dataTeam } = useSWR('/teams', fetcher);
+
     const handleClickButton = () => {
         setVisible(true);
     }
@@ -66,7 +38,7 @@ const TeamPage = () => {
             </DrawerWrapper>
             <Row >
                 {
-                    data.map((item, idx) => (
+                    dataTeam?.result.map((item, idx) => (
                         <Col xs={6}>
                             <Card data={item} type="team" to={`/team/${item.id}`} key={idx}></Card>
                         </Col>

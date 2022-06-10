@@ -1,8 +1,11 @@
 import './Players.style.scss';
 import { useState } from 'react';
-import {Row, Col, Select, Input} from 'antd'
+import {Row, Col, Select, Input, Button} from 'antd'
 import { SearchIcon } from '../../../icons/Icons'
 import CardPlayer from '../../../components/CardPlayer/CardPlayer';
+import DrawerWrapper from '../../../components/drawer/drawer';
+import FormPlayer from '../../../containers/admin/FormPlayer/FormPlayer';
+import { PlusSquareOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
 
@@ -139,7 +142,12 @@ const players = [
 ]
 const Players = () => {
     const [club, setClub] = useState(teams[0].nickname)
-    
+    const [visible, setVisible] = useState(false);
+   
+
+    const handleClickButton = () => {
+        setVisible(true);
+    }
 
     const handleChange = (value) => {
         console.log(value);
@@ -157,7 +165,22 @@ const Players = () => {
                 className='header'
             >
                 <div className='title'>Danh sách cầu thủ</div>
+                <Button 
+                    size="large"
+                    type='primary' 
+                    icon={<PlusSquareOutlined/>}
+                    onClick={handleClickButton}
+                >
+                </Button>
             </div>
+
+            <DrawerWrapper 
+                child={<FormPlayer setDisplay={setVisible} type='create' initialValue={null}/>}
+                display={visible}
+                setDisplay={setVisible}
+            >
+            </DrawerWrapper>
+
             <div className='content-players'>
                 <div className='tool-filter'>
                     <Input.Search

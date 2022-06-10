@@ -1,5 +1,5 @@
 import { Form, Input, DatePicker, Upload, Button, Row, Col } from 'antd';
-import './FormTeam.style.scss';
+import './FormPlayer.style.scss';
 import axiosClient from '../../../api/axiosClient';
 import { openNotification } from '../../../components/Notification/Notification';
 
@@ -20,7 +20,7 @@ const FormTeam = (data) => {
                 openNotification('error', 'Tạo thành công')
             }).catch((err) => {
                 console.log('err: ', err.err)
-                openNotification('error', 'Tên đội bóng trùng, vui lòng tạo lại.')
+                openNotification('error', 'Tên cầu thủ trùng, vui lòng tạo lại.')
             })
         }
     }
@@ -44,39 +44,32 @@ const FormTeam = (data) => {
                         color: '#2566df',
                     }}
                 >
-                    {data?.type === 'create' ? 'Tạo đội bóng mới' : 'Chỉnh sửa thông tin đội bóng'}
+                    {data?.type === 'create' ? 'Tạo cầu thủ' : 'Chỉnh sửa thông tin cầu thủ'}
                 </h1>
                 <div className='content-form-field'>
                     <Form.Item
-                        label={'Tên đội bóng'}
+                        label={'Tên cầu thủ'}
                         name='name'
                         rules={[{ required: true, message: 'Name required' }]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label={'Sân vận động'}
-                        name='pitch'
-                        rules={[{ required: true, message: 'Pitch required' }]}
+                        label={'Vị trí'}
+                        name='position'
+                        rules={[{ required: true, message: 'Position required' }]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label={'Huấn luyện viên'}
-                        name='coach'
-                        rules={[{ required: true, message: 'Coach required' }]}
-                    >
-                        <Input/>
-                    </Form.Item>
-                    <Form.Item
-                        label={'Số lượng cầu thủ'}
-                        name='maxNumber'
-                        rules={[{ required: true, message: 'Max Number required' }]}
+                        label={'Số áo'}
+                        name='number'
+                        rules={[{ required: true, message: 'Number required' }]}
                     >
                         <Input type="number"/>
                     </Form.Item>
                     <Form.Item
-                        label='Logo đội bóng'
+                        label='Ảnh đại diện'
                         name='img'
                         // rules={[{ required: true, message: 'Logo required' }]}
                     >

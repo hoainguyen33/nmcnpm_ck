@@ -21,14 +21,13 @@ const initialDataTeam = {
 
 const Card = (data) => {
     const [visible, setVisible] = useState(false);
-    console.log("data: ", data);
     const handleClick = () => {
         setVisible(true)
     }
     return (
         <div className='wrapper-card'>
             <p>{data.data.name}</p>
-            <img className='img-logo' src={data?.data?.img}/>
+            <img className='img-logo' src={data?.data?.img ?? '/logoMu.jpeg'}/>
             <p style={{fontWeight: 'normal', fontSize: '20px'}}>{data.data?.pitch}</p>
             {data?.type === 'home' ? 
                 <Link style={{width: '100%'}} to={`/detail-champion?championId=${data.data?.id}`}>

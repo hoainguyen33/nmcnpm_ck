@@ -1,8 +1,10 @@
 import { Form, Input, DatePicker, Upload, Button, Row, Col } from 'antd';
 import moment from 'moment';
 import './FormLeage.style.scss'
-const formatDate = 'YYYY/MM/DD hh:mm A';
+import axiosClient from '../../../api/axiosClient';
+import { openNotification } from '../../../components/Notification/Notification';
 
+const formatDate = 'YYYY/MM/DD hh:mm A';
 
 const FormLeage = (data) => {
     const disabledDate = (current) => {
@@ -13,8 +15,22 @@ const FormLeage = (data) => {
     }
     const onFinish = (values) => {
         console.log('values: ', values)
+        if(data.type === 'create') {
+            axiosClient.post('/season', {
+                name: values?.name,
+                logo: 'sdfsdf',
+                max_numbers_of_teams: Number(values.maxNumber),
+                start_date: values?.startTime,
+                end_date: values?.endTime,
+                rank: null
+            }).then(() => {
+
+            }).catch((err) => {
+                console.log('err: ', err.err)
+                openNotification('error', 'Tên mùa giải trùng, vui lòng tạo lại.')
+            })
+        }
     }
-    console.log('sdfsdf: ', data)
     return (
         <div style={{height: '100%'}}>
             <Form
@@ -77,6 +93,14 @@ const FormLeage = (data) => {
                         >
                         </DatePicker>
                     </Form.Item>
+                    <Form.Item
+                        label={'Số lượng đội bóng'}
+                        name='maxNumber'
+                        rules={[{ required: true, message: 'Max Number required' }]}
+                    >
+                        <Input type="Number"/>
+                    </Form.Item>
+
                     <Form.Item
                         label='Hình ảnh'
                         name='img'

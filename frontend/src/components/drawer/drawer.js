@@ -6,7 +6,6 @@ const DrawerWrapper = (data) => {
     const [show, setShow] = useState(data.display);
 
     useEffect(() => {
-        console.log('hello: ', data)
         setShow(data.display)
         return ()=>{
           // end  

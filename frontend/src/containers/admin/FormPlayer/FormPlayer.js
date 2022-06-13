@@ -11,16 +11,20 @@ const FormTeam = (data) => {
     const onFinish = (values) => {
         console.log('values: ', values)
         if(data.type === 'create') {
-            axiosClient.post('/team', {
+            axiosClient.post('/player', {
                 name: values?.name,
                 logo: 'sdfsdf',
-                max_numbers_of_players: Number(values.maxNumber),
-                coach: values.coach
+                age: Number(values?.age),
+                gender: values?.gender,
+                height: Number(values?.height),
+                weight: Number(values?.weight),
+                point: Number(values?.point),
+                position: values?.position
             }).then(() => {
                 openNotification('error', 'Tạo thành công')
             }).catch((err) => {
                 console.log('err: ', err.err)
-                openNotification('error', 'Tên cầu thủ trùng, vui lòng tạo lại.')
+                openNotification('error', 'Lỗi')
             })
         }
     }
@@ -30,8 +34,6 @@ const FormTeam = (data) => {
             layout='vertical'
             initialValues={ data?.initialValue && {
                     name: data?.initialValue?.name || null,
-                    pitch: data?.initialValue?.pitch || null,
-                    coach: data?.initialValue?.coach || null,
                     urlImage: data?.initialValue?.urlImage || null
                 }
             }
@@ -54,19 +56,41 @@ const FormTeam = (data) => {
                     >
                         <Input/>
                     </Form.Item>
+                    
+                    <Form.Item
+                        label={'Chỉ số'}
+                        name='point'
+                        rules={[{ required: true, message: 'Number required' }]}
+                    >
+                        <Input type="number"/>
+                    </Form.Item>
+                    <Form.Item
+                        label={'Tuổi'}
+                        name='age'
+                        rules={[{ required: true, message: 'Age required' }]}
+                    >
+                        <Input type="number"/>
+                    </Form.Item>
+                    <Form.Item
+                        label={'Chiều cao'}
+                        name='height'
+                        rules={[{ required: true, message: 'Number required' }]}
+                    >
+                        <Input type="number"/>
+                    </Form.Item>
+                    <Form.Item
+                        label={'Cân nặng'}
+                        name='weight'
+                        rules={[{ required: true, message: 'Number required' }]}
+                    >
+                        <Input type="number"/>
+                    </Form.Item>
                     <Form.Item
                         label={'Vị trí'}
                         name='position'
                         rules={[{ required: true, message: 'Position required' }]}
                     >
                         <Input/>
-                    </Form.Item>
-                    <Form.Item
-                        label={'Số áo'}
-                        name='number'
-                        rules={[{ required: true, message: 'Number required' }]}
-                    >
-                        <Input type="number"/>
                     </Form.Item>
                     <Form.Item
                         label='Ảnh đại diện'

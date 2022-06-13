@@ -24,10 +24,10 @@ const FormLeage = (data) => {
                 end_date: values?.endTime,
                 rank: null
             }).then(() => {
-
+                openNotification('success', 'Tạo mùa giải thành công')
             }).catch((err) => {
-                console.log('err: ', err.err)
-                openNotification('error', 'Tên mùa giải trùng, vui lòng tạo lại.')
+                console.log('err: ', err)
+                openNotification('error', err.response)
             })
         }
     }
@@ -104,7 +104,7 @@ const FormLeage = (data) => {
                     <Form.Item
                         label='Hình ảnh'
                         name='img'
-                        rules={[{ required: true, message: 'Image required' }]}
+                        // rules={[{ required: true, message: 'Image required' }]}
                     >
                         <Input 
                             type='file'

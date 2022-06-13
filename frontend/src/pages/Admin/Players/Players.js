@@ -1,7 +1,6 @@
 import './Players.style.scss';
 import { useState } from 'react';
 import {Row, Col, Select, Input, Button} from 'antd'
-import { SearchIcon } from '../../../icons/Icons'
 import CardPlayer from '../../../components/CardPlayer/CardPlayer';
 import DrawerWrapper from '../../../components/drawer/drawer';
 import FormPlayer from '../../../containers/admin/FormPlayer/FormPlayer';
@@ -182,29 +181,6 @@ const Players = () => {
             </DrawerWrapper>
 
             <div className='content-players'>
-                <div className='tool-filter'>
-                    <Input.Search
-                        allowClear
-                        className='layout-search-input'
-                        onChange={handleSearch}
-                        style={{ width: 200 }}
-                        size='medium'
-                        placeholder='検索'
-                        enterButton='検索'
-                        prefix={<SearchIcon />}
-                    />
-                    <Select
-                    defaultValue={club}
-                    style={{ width: 200 }}
-                    onChange={handleChange}
-                    >
-                        {teams.map(item => {
-                            return (
-                                <Option value={item.nickname}>{item.nickname}</Option>
-                            )
-                        })}
-                    </Select>
-                </div>
                 <div className='main-content'>
                     <Row>
                         {players.map((item, idx) => {

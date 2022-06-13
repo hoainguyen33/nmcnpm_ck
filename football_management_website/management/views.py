@@ -311,6 +311,4 @@ def get_player(request, id):
     
     team = Team.objects.filter(pk=id).values()
     return JsonResponse(status=status.HTTP_200_OK, data={'status': status.HTTP_200_OK, 'success': True, 'detail': list(team)})
-  
-
       

@@ -22,19 +22,18 @@
                 border-radius: 50%;
                 border: 5px solid white;
                 object-fit: cover;
+                background: white;
             }
             .title {
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
+                margin: 25px 0;
                 p {
                     color: black;
                     font-size: 25px;
                     font-weight: bold;
                     margin: 0;
-                }
-                span {
-                    font-size: 20px;
                 }
             }
         }

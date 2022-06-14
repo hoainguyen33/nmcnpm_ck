@@ -20,6 +20,7 @@ const initialDataTeam = {
 }
 
 const Card = (data) => {
+    console.log('data: ', data)
     const [visible, setVisible] = useState(false);
     const handleClick = () => {
         setVisible(true)

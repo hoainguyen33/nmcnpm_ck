@@ -6,17 +6,32 @@ import Match from '../../../pages/Admin/Match/Match';
 import moment from 'moment';
 import useSWR from 'swr';
 import { fetcher } from '../../../api/swr';
+import { useState, useEffect } from 'react';
+import Rank from '../../../containers/admin/Rank/Rank';
+
 const formatDate = 'YYYY/MM/DD hh:mm A';
+
 
 const { TabPane } = Tabs;
 
-const listTeams = [];
 
 const DetailChampion = () => {
+    const [logo, setLogo] = useState();
+    const [ form ] = Form.useForm();
     const queryParams = new URLSearchParams(window.location.search);
     const id = queryParams.get('championId');
-    const { data } = useSWR(`/get-season/${id}`, fetcher) 
-    console.log('data: ', data, data?.result?.season_info?.name);
+    const { data: dataSeason } = useSWR(`/get-season/${id}`, fetcher) 
+    console.log('data: ', dataSeason, dataSeason?.result?.season_info?.name);
+    useEffect(() => {
+        form.setFieldsValue({ 
+            name: dataSeason?.result?.season_info?.name || null ,
+            startTime: moment(dataSeason?.result?.season_info?.start_date).local() || null,
+            endTime: moment(dataSeason?.result?.season_info?.end_date).local() || null,
+            team: Number(dataSeason?.result?.season_info?.max_numbers_of_teams) || 0,
+         })
+        setLogo(dataSeason?.result?.season_info?.logo);
+    }, [dataSeason])
+
 
     const disabledDate = (current) => {
         return current && current < moment().startOf('day');
@@ -42,12 +57,13 @@ const DetailChampion = () => {
                     <Tabs type="card" defaultActiveKey={1}>
                         <TabPane tab="Thông tin chung" key="1" >
                         <Form
+                            form={form}
                             layout='vertical'
-                            initialValues={ data?.result && {
-                                    name: data?.result?.season_info?.name || null,
-                                    startTime: moment(data?.result?.season_info?.start_date).local() || null,
-                                    endTime: moment(data?.result?.season_info?.end_date).local() || null,
-                                    team: Number(data?.result?.season_info?.max_numbers_of_teams) || 0,
+                            initialValues={ dataSeason?.result && {
+                                    name: dataSeason?.result?.season_info?.name || null ,
+                                    startTime: moment(dataSeason?.result?.season_info?.start_date).local() || null,
+                                    endTime: moment(dataSeason?.result?.season_info?.end_date).local() || null,
+                                    team: Number(dataSeason?.result?.season_info?.max_numbers_of_teams) || 0,
                                 }
                             }
                             scrollToFirstError
@@ -68,7 +84,7 @@ const DetailChampion = () => {
                                         name='name'
                                         rules={[{ required: true, message: 'Name required' }]}
                                     >
-                                        <Input/>
+                                        <Input disabled={true}/>
                                     </Form.Item>
                                     <Form.Item
                                         label={'Ngày bắt đầu'}
@@ -117,8 +133,8 @@ const DetailChampion = () => {
                                         <Input 
                                             type='file'
                                         ></Input>
-                                        {data?.logo && (
-                                            <img src={data?.logo || null} 
+                                        {logo && (
+                                            <img src={logo.indexOf('http') > -1 ? logo : '/default-team-logo.png'} 
                                                 style={{
                                                     width: '150px',
                                                     height: 'auto',
@@ -152,7 +168,7 @@ const DetailChampion = () => {
                                                 htmlType='submit'
                                                 size='large'
                                             >
-                                                {data?.type === 'create' ? 'Create' : 'Edit'}
+                                                Edit
                                             </Button>
                                         </Col>
                                         <Col xs={8}>
@@ -170,7 +186,7 @@ const DetailChampion = () => {
                         <TabPane tab="Danh sách đội bóng" key="2" >
                         <Row >
                             {
-                                listTeams?.map((item, idx) => (
+                                dataSeason?.result?.teams?.map((item, idx) => (
                                     <Col xs={6}>
                                         <Card data={item} type="team" to={`/team/${item.id}`} key={idx}></Card>
                                     </Col>
@@ -179,7 +195,10 @@ const DetailChampion = () => {
                         </Row>
                         </TabPane>
                         <TabPane tab="Lịch thi đấu" key="3" >
-                            <Match></Match>
+                            <Match data={ dataSeason?.result?.matches }></Match>
+                        </TabPane>
+                        <TabPane tab="Bảng xếp hạng" key="4" >
+                            <Rank data={ dataSeason?.result?.season_info?.rank }></Rank>
                         </TabPane>
                     </Tabs>
                 </div>

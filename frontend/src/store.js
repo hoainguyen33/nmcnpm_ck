@@ -8,7 +8,7 @@ const token = localStorage.getItem('token');
 const initialState = {
     account: {
         info: {
-            token
+            "access-token": token
         }
     },
     teams: {

@@ -12,9 +12,15 @@ import iconMenu from '../../icons/icon-menu.svg'
 import iconRight from '../../icons/icon-right.svg'
 import iconLogout from '../../icons/icon-logout.svg'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import Logout from '../../actions/account/logout'
 
 export default function DashboardHome(props) {
   const [isShow, setIsShow] = useState(false)
+  const dispatch = useDispatch()
+  const logout = () => {
+    dispatch(Logout())
+  }
   return (
     <div
       className={isShow ? "dashboard left" : 'dashboard'}
@@ -43,8 +49,8 @@ export default function DashboardHome(props) {
         <NavItem
           logo={iconChamp}
           title="Champions"
-          hover={props.path === "/home"}
-          to="/home"
+          hover={props.path === "/"}
+          to="/"
           isShow={isShow}
           />
         <NavItem
@@ -57,7 +63,7 @@ export default function DashboardHome(props) {
         <NavItem
           logo={iconPlayer}
           title="Players"
-          hover={props.path === "/home/players"}
+          hover={props.path === "/players"}
           to="/players"
           isShow={isShow}
           />
@@ -65,6 +71,7 @@ export default function DashboardHome(props) {
           logo={iconLogout}
           title="Logout"
           isShow={isShow}
+          action={logout}
           />
       </Nav>
     </div>

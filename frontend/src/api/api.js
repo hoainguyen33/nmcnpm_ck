@@ -2,6 +2,6 @@ import axiosClient from './axiosClient';
 
 //example
 export const loginAPI = (values) => {
-  const url = '/auth/login';
+  const url = '/login';
   return axiosClient.post(url, values);
 };

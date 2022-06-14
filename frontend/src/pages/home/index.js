@@ -7,6 +7,8 @@ import {
   Container,
 } from 'react-bootstrap'
 import Information from '../../layouts/account/Information.layout'
+import Players from '../../pages/Admin/Players/Players'
+import DetailChampion from '../../pages/Admin/DetailChampion/DetailChampion'
 // import ListTeam from '../../layouts/team/List.layout'
 import NavbarHome from '../../components/home/NavHome.component' 
 import DashboardHome from '../../components/home/Dashboard.component';
@@ -23,7 +25,7 @@ export default function Home(props) {
   const info = useSelector(state=>state.account.info)
   const paths = Search(props.location.pathname.split("/"))
   useEffect(()=>{
-      (info && info.token) || props.history.push("/account/sign-in")
+      (info && info["access-token"]) || props.history.push("/account/sign-in")
       return ()=>{
           // script end component
       }
@@ -39,7 +41,7 @@ export default function Home(props) {
         <Row>
           <HomeRoute paths={paths} />
         </Row>
-        <Row className="home-content">
+        <Row className="home-content">  
           <Switch>
             {/* <Route path="/information" component={Information} /> */}
             {/* <Route path="/teams" component={ListTeam} /> */}
@@ -47,6 +49,8 @@ export default function Home(props) {
             <Route path='/team/:id' component={DetailTeam} />
             <Route path='/team' component={TeamPage} />
             <Route path='/match' component={Match} />
+            <Route path='/detail-champion' component={DetailChampion}/>
+            <Route path='/players' component={Players}/>
             <Route path="/" exact component={HomeLayout} />
           </Switch>
         </Row>

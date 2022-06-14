@@ -11,7 +11,7 @@ import SignUp from '../../components/account/SignUp.component';
 export default function Account(props) {
    const info = useSelector(state=>state.account.info)
    useEffect(()=>{
-       info && info.token && props.history.push("/")
+       info && info["access-token"] && props.history.push("/")
        return ()=>{
            // script end component
        }

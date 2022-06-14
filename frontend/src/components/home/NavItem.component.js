@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 export default function NavItem(props) {
     return (
-    <Nav.Item>
+    <Nav.Item onClick={props.action}>
         <Link to={props.to} 
           style={{
             backgroundColor: props.hover ? "#1b1f2b" : undefined,

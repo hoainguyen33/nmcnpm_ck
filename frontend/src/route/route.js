@@ -2,21 +2,21 @@ const route = {
     path: "",
     title: "HOME",
     routes: [
-        // {
-        //     path: "/champions",
-        //     title: "CHAMPIONS",
-        //     routes: [
-        //         // {
-        //         //     path: "/home/champions",
-        //         //     title: "LIST",
-        //         // },
-        //         {
-        //             path: "/home/champions/:id",
-        //             title: "GET",
-        //             redux: "champion"
-        //         },
-        //     ]
-        // },
+        {
+            path: "/",
+            title: "CHAMPIONS",
+            routes: [
+                // {
+                //     path: "/home/champions",
+                //     title: "LIST",
+                // },
+                {
+                    path: "/champions/:id",
+                    title: "GET",
+                    redux: "champion"
+                },
+            ]
+        },
         {
             path: "/team",
             title: "TEAMS",
@@ -33,7 +33,7 @@ const route = {
             ]
         },
         {
-            path: "/player",
+            path: "/players",
             title: "PLAYERS",
             routes: [
                 // {
@@ -41,7 +41,7 @@ const route = {
                 //     title: "LIST",
                 // },
                 {
-                    path: "/player/:id",
+                    path: "/players/:id",
                     title: "GET",
                     redux: "player"
                 },

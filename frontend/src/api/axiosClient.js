@@ -4,6 +4,7 @@ import axios from "axios";
 
 const axiosClient = axios.create({
     baseURL: process.env.REACT_APP_END_POINT,
+    // baseURL: "https://nmcnpm-nhom17.herokuapp.com",
     headers: {
         'Content-type': 'application/json',
     },

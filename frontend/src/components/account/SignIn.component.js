@@ -34,7 +34,7 @@ export default function SignIn(props) {
                     Email address
                 </Form.Label>
                 <Form.Control
-                    type="email"
+                    type="text"
                     placeholder="Enter email"
                     value={email}
                     onChange={e=>setEmail(e.target.value)}

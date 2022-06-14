@@ -10,13 +10,13 @@ import useSWR from 'swr';
 import { fetcher } from '../../api/swr'
 
 const HomeLayout = () => {
+
     const [visible, setVisible] = useState(false);
 
     const { data: dataSeason } = useSWR('/seasons', fetcher);
+    
 
-    console.log('data season: ', dataSeason)
-
-    const handleClickButton = () => {
+    const handleClickButton = async () => {
         setVisible(true);
     }
     return (

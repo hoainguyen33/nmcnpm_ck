@@ -1,16 +1,15 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
+import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID
-}
+  apiKey: "AIzaSyCNJLxWqd7mhjffaGSsOh7hoCL0fs7295w",
+  authDomain: "costmanagerment.firebaseapp.com",
+  projectId: "costmanagerment",
+  storageBucket: "costmanagerment.appspot.com",
+  messagingSenderId: "596478251730",
+  appId: "1:596478251730:web:b5bbfdf16a619600bd930b",
+  measurementId: "G-7ELEV0VJVG"
+};
 
-firebase.initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig);
 
-export default firebase
+export default app;

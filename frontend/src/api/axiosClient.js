@@ -1,31 +1,20 @@
 import axios from "axios";
-import queryString from "query-string"
+// import queryString from "query-string"
+// const token = localStorage.getItem("token")
 
 const axiosClient = axios.create({
     baseURL: process.env.REACT_APP_END_POINT,
     headers: {
-        "content-type": "application/json",
+        'Content-type': 'application/json',
     },
-    paramsSerializer: params => queryString.stringify(params),
 });
 
-axiosClient.interceptors.request.use(async (config) => {
-    //Handle token here...
-    const token = localStorage.getItem("token")
-    if (token) {
-        config.headers['x-access-token'] = token
-    }
-    return config
-})
-
-axiosClient.interceptors.response.use((response) => {
-    // if (response && response.data) {
-    //     return response.data;
-    // }
-    console.log('sdfsdf')
-    return response;
-}, (error) => {
-    throw error;
+axiosClient.interceptors.request.use(function (config) {
+    const token = localStorage.getItem('token');
+    config.headers.Authorization =  token ? `Bearer ${token}` : '';
+    return config;
 });
+
+// axiosClient.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
 export default axiosClient;

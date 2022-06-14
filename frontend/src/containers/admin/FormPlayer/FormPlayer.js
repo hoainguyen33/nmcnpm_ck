@@ -8,6 +8,7 @@ const FormTeam = (data) => {
     const onCancel = () => {
         data.setDisplay(false)
     }
+    
     const onFinish = (values) => {
         console.log('values: ', values)
         if(data.type === 'create') {

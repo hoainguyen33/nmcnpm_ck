@@ -27,7 +27,7 @@ const Card = (data) => {
     return (
         <div className='wrapper-card'>
             <p>{data.data.name}</p>
-            <img className='img-logo' src={data?.data?.img ?? '/logoMu.jpeg'}/>
+            <img className='img-logo' src={data?.data?.img ?? (data?.type === 'home' ? '/logoMu.png' : '/default-team-logo.png')}/>
             <p style={{fontWeight: 'normal', fontSize: '20px'}}>{data.data?.pitch}</p>
             {data?.type === 'home' ? 
                 <Link style={{width: '100%'}} to={`/detail-champion?championId=${data.data?.id}`}>

@@ -4,23 +4,20 @@ import { openNotification } from '../../../components/Notification/Notification'
 import Card from '../../../components/card/card';
 import Match from '../../../pages/Admin/Match/Match';
 import moment from 'moment';
+import useSWR from 'swr';
+import { fetcher } from '../../../api/swr';
 const formatDate = 'YYYY/MM/DD hh:mm A';
 
 const { TabPane } = Tabs;
 
-const  data = {
-    name: 'Mùa giải 1',
-    logo: './logoMu.jpeg',
-    startTime: '2022/04/04 10:05 PM',
-    endTime: '2022/04/04 10:25 PM',
-    team: 32,
-    option: 'vòng tròn'
-}
-
-
 const listTeams = [];
 
 const DetailChampion = () => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const id = queryParams.get('championId');
+    const { data } = useSWR(`/get-season/${id}`, fetcher) 
+    console.log('data: ', data, data?.result?.season_info?.name);
+
     const disabledDate = (current) => {
         return current && current < moment().startOf('day');
     }
@@ -46,12 +43,11 @@ const DetailChampion = () => {
                         <TabPane tab="Thông tin chung" key="1" >
                         <Form
                             layout='vertical'
-                            initialValues={ data && {
-                                    name: data?.name || null,
-                                    startTime: moment(data?.startTime).local() || null,
-                                    endTime: moment(data?.endTime).local() || null,
-                                    team: Number(data?.team) || 0,
-                                    option: data?.option || null,
+                            initialValues={ data?.result && {
+                                    name: data?.result?.season_info?.name || null,
+                                    startTime: moment(data?.result?.season_info?.start_date).local() || null,
+                                    endTime: moment(data?.result?.season_info?.end_date).local() || null,
+                                    team: Number(data?.result?.season_info?.max_numbers_of_teams) || 0,
                                 }
                             }
                             scrollToFirstError

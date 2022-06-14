@@ -3,7 +3,8 @@ import moment from 'moment';
 import './FormLeage.style.scss'
 import axiosClient from '../../../api/axiosClient';
 import { openNotification } from '../../../components/Notification/Notification';
-
+import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import axios from 'axios';
 const formatDate = 'YYYY/MM/DD hh:mm A';
 
 const FormLeage = (data) => {
@@ -12,6 +13,24 @@ const FormLeage = (data) => {
     }
     const onCancel = () => {
         data.setDisplay(false)
+    }
+    const handleUpload = (e) => {
+        const image = e.target.files[0];
+        console.log('e: ', e.target.files[0]);
+        const storage = getStorage();
+          // Create a reference to 'mountains.jpg'
+          const storageRef = ref(storage, image.name);
+          const uploadTask = uploadBytesResumable(storageRef, image);
+          uploadBytes(storageRef, image).then((snapshot) => {
+            console.log('Uploaded a blob or file: ', snapshot);
+            if(!snapshot) {
+                console.log('error');
+              return;
+            }
+            getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                console.log('image: ', downloadURL);
+            });
+          });
     }
     const onFinish = (values) => {
         console.log('values: ', values)
@@ -108,6 +127,7 @@ const FormLeage = (data) => {
                     >
                         <Input 
                             type='file'
+                            onChange={handleUpload}
                         ></Input>
                         {data?.initialValue?.urlImage && (
                             <img src={data?.initialValue?.urlImage || null} 

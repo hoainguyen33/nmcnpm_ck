@@ -23,7 +23,7 @@ const DetailChampion = () => {
     const [ form ] = Form.useForm();
     const queryParams = new URLSearchParams(window.location.search);
     const id = queryParams.get('championId');
-    const { data: dataSeason } = useSWR(`/get-season/${id}`, fetcher) 
+    const { data: dataSeason, mutate } = useSWR(`/get-season/${id}`, fetcher) 
     const { data: dataRank } = useSWR(`/get-season-rank/${id}`, fetcher)
     const role = localStorage.getItem('userType');
 
@@ -50,6 +50,22 @@ const DetailChampion = () => {
             }
        }) 
     }
+    const handleBeforeCreateMatch = () => {
+        axiosClient.post(
+            `/create-match-schedule/${id}`
+        ).then(() => {
+            openNotification(
+                'success',
+                'Tạo lịch thi đấu thành công!'
+            )
+            mutate()
+        }).catch(() => {
+            openNotification(
+                'error',
+                'Tạo lịch thi đấu thất bại!'
+            )
+        })
+    }
 
     const disabledDate = (current) => {
         return current && current < moment().startOf('day');
@@ -64,12 +80,12 @@ const DetailChampion = () => {
         }).then(() => {
             openNotification(
                 'success',
-                'update successful'
+                'Chỉnh sửa thành công!'
             )
         }).catch(() => {
             openNotification(
                 'error',
-                'update error'
+                'Chỉnh sửa thất bại'
             )
         })
         
@@ -189,8 +205,10 @@ const DetailChampion = () => {
                                                 style={{
                                                     background: 'green'
                                                 }}
+                                                disabled={dataSeason?.result?.season_info?.is_start ? true : false}
+                                                onClick={handleBeforeCreateMatch}
                                             >
-                                                Tạo trận
+                                                Tạo lịch thi đấu
                                             </Button>
                                         </Col>
                                         <Col xs={12}>
@@ -201,7 +219,7 @@ const DetailChampion = () => {
                                                 size='large'
                                                 disabled={disable ? true : false}
                                             >
-                                                Edit
+                                                Chỉnh sửa
                                             </Button>
                                         </Col>
                                         

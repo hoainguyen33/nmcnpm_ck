@@ -20,7 +20,7 @@ import Match from '../Admin/Match/Match'
 import DetailTeam from '../Admin/DetailTeam/DetailTeam'
 import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import HomeRoute from '../../components/home/HomeRoute.component';
-
+import AddPlayer from '../Admin/AddPlayer/AddPlayer';
 export default function Home(props) {
   const info = useSelector(state=>state.account.info)
   const paths = Search(props.location.pathname.split("/"))
@@ -53,6 +53,7 @@ export default function Home(props) {
             <Route path='/players' component={Players}/>
             <Route path="/" exact component={HomeLayout} />
             <Route path='/detail-teams' component={DetailTeam} />
+            <Route path='/add-player'  component={AddPlayer}/>
           </Switch>
         </Row>
       </Container>

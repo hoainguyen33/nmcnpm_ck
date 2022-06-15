@@ -1,20 +1,38 @@
-import { Form, Input, DatePicker, Upload, Button, Row, Col } from 'antd';
+import { Form, Input, DatePicker, Upload, Button, Row, Col, Spin } from 'antd';
 import './FormPlayer.style.scss';
 import axiosClient from '../../../api/axiosClient';
 import { openNotification } from '../../../components/Notification/Notification';
+import { getUrlFromFirebase } from '../.././../firebase/index';
+import { useState } from 'react';
 
 
 const FormTeam = (data) => {
+    const [logo, setLogo] = useState('');
+    const [disable, setDisable] = useState(false);
+
     const onCancel = () => {
         data.setDisplay(false)
     }
-    
+    const handleUpload = (e) => {
+        setDisable(true)
+       getUrlFromFirebase(e, (result) => {
+            console.log('result: ', result)
+            if(result.success) {
+                setLogo(result.image)
+                setDisable(false)
+            } else {
+                setLogo(null)
+                setDisable(false)
+            }
+       }) 
+    }
+
     const onFinish = (values) => {
         console.log('values: ', values)
         if(data.type === 'create') {
             axiosClient.post('/player', {
                 name: values?.name,
-                logo: 'sdfsdf',
+                image: logo,
                 age: Number(values?.age),
                 gender: values?.gender,
                 height: Number(values?.height),
@@ -22,10 +40,11 @@ const FormTeam = (data) => {
                 point: Number(values?.point),
                 position: values?.position
             }).then(() => {
-                openNotification('error', 'Tạo thành công')
-            }).catch((err) => {
-                console.log('err: ', err.err)
-                openNotification('error', 'Lỗi')
+                openNotification('success', 'Tạo cầu thủ thành công!')
+                data.setDisplay(false)
+                data.refetch()
+            }).catch(() => {
+                openNotification('error', 'Tạo cầu thủ thất bại!')
             })
         }
     }
@@ -57,7 +76,13 @@ const FormTeam = (data) => {
                     >
                         <Input/>
                     </Form.Item>
-                    
+                    <Form.Item
+                        label={'Giới tính (nam/nữ)'}
+                        name='gender'
+                        rules={[{ required: true, message: 'Gender required' }]}
+                    >
+                        <Input/>
+                    </Form.Item>
                     <Form.Item
                         label={'Chỉ số'}
                         name='point'
@@ -100,9 +125,18 @@ const FormTeam = (data) => {
                     >
                         <Input 
                             type='file'
+                            onChange={handleUpload}
                         ></Input>
-                        {data?.initialValue?.urlImage && (
-                            <img src={data?.initialValue?.urlImage || null} 
+                         <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginTop: '10px'
+                        }}>
+                            {disable ? <Spin size="large"/> : <></>}
+                        </div>
+                        {data?.type === 'create' ? 
+                            <img 
+                                src={logo || null} 
                                 style={{
                                     width: '150px',
                                     height: 'auto',
@@ -111,8 +145,19 @@ const FormTeam = (data) => {
                                     boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
                                     padding: '10px'
                                 }}
-                            />
-                        )}
+                            /> : (data?.initialValue?.urlImage && (
+                                <img src={data?.initialValue?.urlImage || null} 
+                                    style={{
+                                        width: '150px',
+                                        height: 'auto',
+                                        margin: '10px auto',
+                                        display: 'block',
+                                        boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+                                        padding: '10px'
+                                    }}
+                                />
+                            ))
+                        }
                     </Form.Item>
                 </div>
                 <Form.Item>
@@ -123,6 +168,7 @@ const FormTeam = (data) => {
                                 value='confirm'
                                 htmlType='submit'
                                 size='large'
+                                disabled={disable ? true : false}
                             >
                                 {data?.type === 'create' ? 'Create' : 'Edit'}
                             </Button>

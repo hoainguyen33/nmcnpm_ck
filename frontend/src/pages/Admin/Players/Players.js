@@ -12,7 +12,7 @@ import { fetcher } from '../../../api/swr';
 
 const Players = () => {
     const [visible, setVisible] = useState(false);
-    const {data: dataPlayes} = useSWR('/players', fetcher);
+    const {data: dataPlayes, mutate} = useSWR('/players', fetcher);
     const role = localStorage.getItem('userType');
 
     const handleClickButton = () => {
@@ -40,7 +40,7 @@ const Players = () => {
             </div>
 
             <DrawerWrapper 
-                child={<FormPlayer setDisplay={setVisible} type='create' initialValue={null}/>}
+                child={<FormPlayer setDisplay={setVisible} refetch={() => mutate()} type='create' initialValue={null}/>}
                 display={visible}
                 setDisplay={setVisible}
             >

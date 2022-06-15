@@ -1,26 +1,45 @@
-import { Form, Input, DatePicker, Upload, Button, Row, Col } from 'antd';
+import { Form, Input, DatePicker, Upload, Button, Row, Col, Spin } from 'antd';
 import './FormTeam.style.scss';
 import axiosClient from '../../../api/axiosClient';
 import { openNotification } from '../../../components/Notification/Notification';
+import { useState } from 'react';
+import { getUrlFromFirebase } from '../.././../firebase/index';
 
 
 const FormTeam = (data) => {
+    const [logo, setLogo] = useState('');
+    const [disable, setDisable] = useState(false);
+
     const onCancel = () => {
         data.setDisplay(false)
+    }
+    const handleUpload = (e) => {
+        setDisable(true)
+       getUrlFromFirebase(e, (result) => {
+            console.log('result: ', result)
+            if(result.success) {
+                setLogo(result.image)
+                setDisable(false)
+            } else {
+                setLogo(null)
+                setDisable(false)
+            }
+       }) 
     }
     const onFinish = (values) => {
         console.log('values: ', values)
         if(data.type === 'create') {
             axiosClient.post('/team', {
                 name: values?.name,
-                logo: 'sdfsdf',
-                max_numbers_of_players: Number(values.maxNumber),
-                coach: values.coach
+                logo: logo,
+                coach: values.coach,
+                max_numbers_of_players: Number(values.maxNumber)
             }).then(() => {
-                openNotification('error', 'Tạo thành công')
-            }).catch((err) => {
-                console.log('err: ', err.err)
-                openNotification('error', 'Tên đội bóng trùng, vui lòng tạo lại.')
+                openNotification('success', 'Tạo đội bóng thành công!')
+                data?.refetch()
+                data.setDisplay(false)
+            }).catch(() => {
+                openNotification('error', 'Tạo đội bóng thất bại!')
             })
         }
     }
@@ -30,7 +49,6 @@ const FormTeam = (data) => {
             layout='vertical'
             initialValues={ data?.initialValue && {
                     name: data?.initialValue?.name || null,
-                    pitch: data?.initialValue?.pitch || null,
                     coach: data?.initialValue?.coach || null,
                     urlImage: data?.initialValue?.urlImage || null
                 }
@@ -55,13 +73,6 @@ const FormTeam = (data) => {
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label={'Sân vận động'}
-                        name='pitch'
-                        rules={[{ required: true, message: 'Pitch required' }]}
-                    >
-                        <Input/>
-                    </Form.Item>
-                    <Form.Item
                         label={'Huấn luyện viên'}
                         name='coach'
                         rules={[{ required: true, message: 'Coach required' }]}
@@ -82,9 +93,18 @@ const FormTeam = (data) => {
                     >
                         <Input 
                             type='file'
+                            onChange={handleUpload}
                         ></Input>
-                        {data?.initialValue?.urlImage && (
-                            <img src={data?.initialValue?.urlImage || null} 
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginTop: '10px'
+                        }}>
+                            {disable ? <Spin size="large"/> : <></>}
+                        </div>
+                        {data?.type === 'create' ? 
+                            <img 
+                                src={logo || null} 
                                 style={{
                                     width: '150px',
                                     height: 'auto',
@@ -93,8 +113,19 @@ const FormTeam = (data) => {
                                     boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
                                     padding: '10px'
                                 }}
-                            />
-                        )}
+                            /> : (data?.initialValue?.urlImage && (
+                                <img src={data?.initialValue?.urlImage || null} 
+                                    style={{
+                                        width: '150px',
+                                        height: 'auto',
+                                        margin: '10px auto',
+                                        display: 'block',
+                                        boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+                                        padding: '10px'
+                                    }}
+                                />
+                            ))
+                        }
                     </Form.Item>
                 </div>
                 <Form.Item>
@@ -105,6 +136,7 @@ const FormTeam = (data) => {
                                 value='confirm'
                                 htmlType='submit'
                                 size='large'
+                                disabled={disable ? true : false}
                             >
                                 {data?.type === 'create' ? 'Create' : 'Edit'}
                             </Button>

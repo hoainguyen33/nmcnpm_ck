@@ -13,7 +13,7 @@ const HomeLayout = () => {
 
     const [visible, setVisible] = useState(false);
 
-    const { data: dataSeason } = useSWR('/seasons', fetcher);
+    const { data: dataSeason, mutate } = useSWR('/seasons', fetcher);
     const role = localStorage.getItem('userType');
     const handleClickButton = async () => {
         setVisible(true);
@@ -35,7 +35,7 @@ const HomeLayout = () => {
                 
             </div>
             <DrawerWrapper 
-                child={<FormLeage setDisplay={setVisible} type='create' initialValue={null}/>}
+                child={<FormLeage setDisplay={setVisible} type='create' refetch={() => mutate()} initialValue={null}/>}
                 display={visible}
                 setDisplay={setVisible}
             >

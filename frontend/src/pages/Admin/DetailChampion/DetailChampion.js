@@ -1,5 +1,5 @@
 import './DetailChampion.style.scss';
-import { Form, Row, Col, Input, DatePicker, Button, Tabs } from 'antd';
+import { Form, Row, Col, Input, DatePicker, Button, Tabs, Spin } from 'antd';
 import { openNotification } from '../../../components/Notification/Notification'
 import Card from '../../../components/card/card';
 import Match from '../../../pages/Admin/Match/Match';
@@ -8,8 +8,10 @@ import useSWR from 'swr';
 import { fetcher } from '../../../api/swr';
 import { useState, useEffect } from 'react';
 import Rank from '../../../containers/admin/Rank/Rank';
+import axiosClient from '../../../api/axiosClient';
+import { getUrlFromFirebase } from '../../../firebase/index';
 
-const formatDate = 'YYYY/MM/DD hh:mm A';
+const formatDate = 'YYYY-MM-DD';
 
 
 const { TabPane } = Tabs;
@@ -17,6 +19,7 @@ const { TabPane } = Tabs;
 
 const DetailChampion = () => {
     const [logo, setLogo] = useState();
+    const [disable, setDisable] = useState(false);
     const [ form ] = Form.useForm();
     const queryParams = new URLSearchParams(window.location.search);
     const id = queryParams.get('championId');
@@ -34,24 +37,43 @@ const DetailChampion = () => {
         setLogo(dataSeason?.result?.season_info?.logo);
     }, [dataSeason])
 
+    const handleUpload = (e) => {
+        setDisable(true)
+       getUrlFromFirebase(e, (result) => {
+            console.log('result: ', result)
+            if(result.success) {
+                setLogo(result.image)
+                setDisable(false)
+            } else {
+                setLogo(null)
+                setDisable(false)
+            }
+       }) 
+    }
 
     const disabledDate = (current) => {
         return current && current < moment().startOf('day');
     }
     const onFinish = (values) => {
         console.log(values);
-        openNotification(
-            'success',
-            'update successful'
-        )
+        axiosClient.put(`/update-season/${id}`, {
+            logo: logo,
+            start_date: moment(values?.startTime).format('YYYY-MM-DD'),
+            end_date: moment(values?.endTime).format('YYYY-MM-DD'),
+            max_numbers_of_teams: Number(values?.team),
+        }).then(() => {
+            openNotification(
+                'success',
+                'update successful'
+            )
+        }).catch(() => {
+            openNotification(
+                'error',
+                'update error'
+            )
+        })
+        
     } 
-    const onCancel = () => {
-        console.log('cancel')
-        openNotification(
-            'error',
-            'update error'
-        )
-    }
     return (
         <div className="wrapper-champion">
             <div className='wrapper-content'>
@@ -134,7 +156,15 @@ const DetailChampion = () => {
                                     >
                                         <Input 
                                             type='file'
+                                            onChange={handleUpload}
                                         ></Input>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            marginTop: '10px'
+                                        }}>
+                                            {disable ? <Spin size="large"/> : <></>}
+                                        </div>
                                         {logo && (
                                             <img src={logo.indexOf('http') > -1 ? logo : '/default-team-logo.png'} 
                                                 style={{
@@ -152,7 +182,7 @@ const DetailChampion = () => {
                                 </div>
                                 {role === 'admin' && <Form.Item>
                                     <Row>
-                                        <Col xs={8}>
+                                        <Col xs={12}>
                                             <Button 
                                                 className='button-confirm'
                                                 size='large'
@@ -163,24 +193,18 @@ const DetailChampion = () => {
                                                 Tạo trận
                                             </Button>
                                         </Col>
-                                        <Col xs={8}>
+                                        <Col xs={12}>
                                             <Button 
                                                 className='button-confirm'
                                                 value='confirm'
                                                 htmlType='submit'
                                                 size='large'
+                                                disabled={disable ? true : false}
                                             >
                                                 Edit
                                             </Button>
                                         </Col>
-                                        <Col xs={8}>
-                                            <Button 
-                                                className='button-cancel'
-                                                onClick={onCancel}
-                                            >
-                                                Cancel
-                                            </Button>
-                                        </Col>
+                                        
                                     </Row>
                                 </Form.Item>
                             }

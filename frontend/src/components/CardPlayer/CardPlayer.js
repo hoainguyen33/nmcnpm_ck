@@ -15,7 +15,7 @@ const CardPlayer = (data) => {
     return (
         <>
             <div className="main-card" onClick={handleClickCard}>
-                <img src={data?.data?.image?.indexOf('http') ? data?.data?.image : '/hidden.jpeg'}/>
+                <img src={data?.data?.image?.indexOf('http') > -1 ? data?.data?.image : '/hidden.jpeg'}/>
                 <div className='name-pos'>
                     <div>{data?.data?.name}</div>
                 </div>
@@ -25,12 +25,11 @@ const CardPlayer = (data) => {
             </div>
             <Modal visible={visible} onCancel={onCancel} footer={false} >
                 <div className="modal-card" >
-                    <img src={data?.data?.image?.indexOf('http') ? data?.data?.image : '/hidden.jpeg'}/>
-                    <p><b>Team</b>: {data?.data?.team?.name ?? 'Tự do'}</p>
-
+                    <img src={data?.data?.image?.indexOf('http') > -1? data?.data?.image : '/hidden.jpeg'}/>
                     <div className='name-pos'>
                         <div>{data?.data?.name}</div>
                     </div>
+                    <p><b>Team</b>: {data?.data?.team?.name ?? 'Tự do'}</p>
                     <p><b>Position</b>: {data?.data?.position}</p>
                     <p><b>Gender</b>: {data?.data?.gender}</p>
                     <p><b>Age</b>: {data?.data?.age}</p>

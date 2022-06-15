@@ -11,7 +11,7 @@ import { fetcher } from '../../../api/swr'
 
 const TeamPage = () => {
     const [visible, setVisible] = useState(false);
-    const { data: dataTeam } = useSWR('/teams', fetcher);
+    const { data: dataTeam, mutate } = useSWR('/teams', fetcher);
     const role = localStorage.getItem('userType');
 
     const handleClickButton = () => {
@@ -36,7 +36,7 @@ const TeamPage = () => {
                 
             </div>
             <DrawerWrapper 
-                child={<FormTeam setDisplay={setVisible} type='create' initialValue={null}/>}
+                child={<FormTeam setDisplay={setVisible} refetch={() => mutate()} type='create' initialValue={null}/>}
                 display={visible}
                 setDisplay={setVisible}
             >

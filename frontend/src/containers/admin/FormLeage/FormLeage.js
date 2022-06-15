@@ -3,10 +3,9 @@ import moment from 'moment';
 import './FormLeage.style.scss'
 import axiosClient from '../../../api/axiosClient';
 import { openNotification } from '../../../components/Notification/Notification';
-import axios from 'axios';
 import { getUrlFromFirebase } from '../.././../firebase/index';
 import { useState } from 'react';
-const formatDate = 'YYYY/MM/DD hh:mm A';
+const formatDate = 'YYYY/MM/DD';
 
 const FormLeage = (data) => {
     const [logo, setLogo] = useState('');
@@ -37,15 +36,16 @@ const FormLeage = (data) => {
             axiosClient.post('/season', {
                 name: values?.name,
                 logo: logo,
+                start_date: moment(values?.startTime).format('YYYY-MM-DD'),
+                end_date: moment(values?.endTime).format('YYYY-MM-DD'),
                 max_numbers_of_teams: Number(values.maxNumber),
-                start_date: values?.startTime,
-                end_date: values?.endTime,
                 rank: null
             }).then(() => {
-                openNotification('success', 'Tạo mùa giải thành công')
-            }).catch((err) => {
-                console.log('err: ', err)
-                openNotification('error', err.response)
+                openNotification('success', 'Tạo mùa giải thành công!')
+                data?.refetch()
+                data?.setDisplay(false)
+            }).catch(() => {
+                openNotification('error', 'Tạo mùa giải thất bại!')
             })
         }
     }

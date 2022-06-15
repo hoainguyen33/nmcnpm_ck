@@ -23,12 +23,12 @@ const Card = (data) => {
     const role = localStorage.getItem('userType');
     const [visible, setVisible] = useState(false);
     const handleClick = () => {
-        setVisible(true)
+        setVisible(true)        
     }
     return (
         <div className='wrapper-card'>
             <p>{data.data.name}</p>
-            <img className='img-logo' src={data?.data?.img ?? (data?.type === 'home' ? '/logoMu.png' : '/default-team-logo.png')}/>
+            <img className='img-logo' src={data?.data?.logo?.indexOf('http') > -1 ? data?.data?.logo : (data?.type === 'home' ? '/logoMu.png' : '/default-team-logo.png')}/>
             <p style={{fontWeight: 'normal', fontSize: '20px'}}>{data.data?.pitch}</p>
             {data?.type === 'home' ? 
                 <Link style={{width: '100%'}} to={`/detail-champion?championId=${data.data?.id}`}>

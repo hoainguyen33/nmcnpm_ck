@@ -21,7 +21,9 @@ const DetailChampion = () => {
     const queryParams = new URLSearchParams(window.location.search);
     const id = queryParams.get('championId');
     const { data: dataSeason } = useSWR(`/get-season/${id}`, fetcher) 
-    console.log('data: ', dataSeason, dataSeason?.result?.season_info?.name);
+    const { data: dataRank } = useSWR(`/get-season-rank/${id}`, fetcher)
+    const role = localStorage.getItem('userType');
+
     useEffect(() => {
         form.setFieldsValue({ 
             name: dataSeason?.result?.season_info?.name || null ,
@@ -148,7 +150,7 @@ const DetailChampion = () => {
                                         
                                     </Form.Item>
                                 </div>
-                                <Form.Item>
+                                {role === 'admin' && <Form.Item>
                                     <Row>
                                         <Col xs={8}>
                                             <Button 
@@ -181,7 +183,8 @@ const DetailChampion = () => {
                                         </Col>
                                     </Row>
                                 </Form.Item>
-                            </Form>
+                            }
+                        </Form>
                         </TabPane>
                         <TabPane tab="Danh sách đội bóng" key="2" >
                         <Row >
@@ -198,7 +201,7 @@ const DetailChampion = () => {
                             <Match data={ dataSeason?.result?.matches }></Match>
                         </TabPane>
                         <TabPane tab="Bảng xếp hạng" key="4" >
-                            <Rank data={ dataSeason?.result?.season_info?.rank }></Rank>
+                            <Rank data={ dataRank?.result ?? [] }></Rank>
                         </TabPane>
                     </Tabs>
                 </div>

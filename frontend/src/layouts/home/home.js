@@ -14,8 +14,7 @@ const HomeLayout = () => {
     const [visible, setVisible] = useState(false);
 
     const { data: dataSeason } = useSWR('/seasons', fetcher);
-    
-
+    const role = localStorage.getItem('userType');
     const handleClickButton = async () => {
         setVisible(true);
     }
@@ -25,13 +24,15 @@ const HomeLayout = () => {
                 className='header'
             >
                 <div className='title'>Danh sách mùa giải</div>
-                <Button 
-                    size="large"
-                    type='primary' 
-                    icon={<PlusSquareOutlined/>}
-                    onClick={handleClickButton}
-                >
-                </Button>
+                {(role === 'admin') &&  <Button 
+                        size="large"
+                        type='primary' 
+                        icon={<PlusSquareOutlined/>}
+                        onClick={handleClickButton}
+                    >
+                    </Button>
+                }
+                
             </div>
             <DrawerWrapper 
                 child={<FormLeage setDisplay={setVisible} type='create' initialValue={null}/>}
@@ -39,7 +40,7 @@ const HomeLayout = () => {
                 setDisplay={setVisible}
             >
             </DrawerWrapper>
-            <Row justify='center'>
+            <Row>
                 {
                     dataSeason?.result?.map((item, idx) => (
                         <Col xs={24} md={8} lg={6}>

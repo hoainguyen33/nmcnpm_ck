@@ -12,23 +12,28 @@ import { fetcher } from '../../../api/swr'
 const TeamPage = () => {
     const [visible, setVisible] = useState(false);
     const { data: dataTeam } = useSWR('/teams', fetcher);
+    const role = localStorage.getItem('userType');
 
     const handleClickButton = () => {
         setVisible(true);
     }
     return (
-        <div>
+    
+    <div style={{padding: '0 0 100px 0'}}>
             <div
                 className='header'
             >
                 <div className='title'>Danh sách đội bóng</div>
-                <Button 
-                    size="large"
-                    type='primary' 
-                    icon={<PlusSquareOutlined/>}
-                    onClick={handleClickButton}
-                >
-                </Button>
+                {role === 'admin' && 
+                    <Button 
+                        size="large"
+                        type='primary' 
+                        icon={<PlusSquareOutlined/>}
+                        onClick={handleClickButton}
+                    >
+                    </Button>
+                }
+                
             </div>
             <DrawerWrapper 
                 child={<FormTeam setDisplay={setVisible} type='create' initialValue={null}/>}

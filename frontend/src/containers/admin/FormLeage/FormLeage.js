@@ -1,13 +1,17 @@
-import { Form, Input, DatePicker, Upload, Button, Row, Col } from 'antd';
+import { Form, Input, DatePicker, Upload, Button, Row, Col, Spin } from 'antd';
 import moment from 'moment';
 import './FormLeage.style.scss'
 import axiosClient from '../../../api/axiosClient';
 import { openNotification } from '../../../components/Notification/Notification';
-import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from 'axios';
+import { getUrlFromFirebase } from '../.././../firebase/index';
+import { useState } from 'react';
 const formatDate = 'YYYY/MM/DD hh:mm A';
 
 const FormLeage = (data) => {
+    const [logo, setLogo] = useState('');
+    const [disable, setDisable] = useState(false);
+
     const disabledDate = (current) => {
         return current && current < moment().startOf('day');
     }
@@ -15,29 +19,24 @@ const FormLeage = (data) => {
         data.setDisplay(false)
     }
     const handleUpload = (e) => {
-        const image = e.target.files[0];
-        console.log('e: ', e.target.files[0]);
-        const storage = getStorage();
-          // Create a reference to 'mountains.jpg'
-          const storageRef = ref(storage, image.name);
-          const uploadTask = uploadBytesResumable(storageRef, image);
-          uploadBytes(storageRef, image).then((snapshot) => {
-            console.log('Uploaded a blob or file: ', snapshot);
-            if(!snapshot) {
-                console.log('error');
-              return;
+        setDisable(true)
+       getUrlFromFirebase(e, (result) => {
+            console.log('result: ', result)
+            if(result.success) {
+                setLogo(result.image)
+                setDisable(false)
+            } else {
+                setLogo(null)
+                setDisable(false)
             }
-            getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                console.log('image: ', downloadURL);
-            });
-          });
+       }) 
     }
     const onFinish = (values) => {
         console.log('values: ', values)
         if(data.type === 'create') {
             axiosClient.post('/season', {
                 name: values?.name,
-                logo: 'sdfsdf',
+                logo: logo,
                 max_numbers_of_teams: Number(values.maxNumber),
                 start_date: values?.startTime,
                 end_date: values?.endTime,
@@ -129,8 +128,16 @@ const FormLeage = (data) => {
                             type='file'
                             onChange={handleUpload}
                         ></Input>
-                        {data?.initialValue?.urlImage && (
-                            <img src={data?.initialValue?.urlImage || null} 
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginTop: '10px'
+                        }}>
+                            {disable ? <Spin size="large"/> : <></>}
+                        </div>
+                        {data?.type === 'create' ? 
+                            <img 
+                                src={logo || null} 
                                 style={{
                                     width: '150px',
                                     height: 'auto',
@@ -139,8 +146,20 @@ const FormLeage = (data) => {
                                     boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
                                     padding: '10px'
                                 }}
-                            />
-                        )}
+                            /> : (data?.initialValue?.urlImage && (
+                                <img src={data?.initialValue?.urlImage || null} 
+                                    style={{
+                                        width: '150px',
+                                        height: 'auto',
+                                        margin: '10px auto',
+                                        display: 'block',
+                                        boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+                                        padding: '10px'
+                                    }}
+                                />
+                            ))
+                        }
+                        
                         
                     </Form.Item>
                 </div>
@@ -152,6 +171,7 @@ const FormLeage = (data) => {
                                 value='confirm'
                                 htmlType='submit'
                                 size='large'
+                                disabled={disable ? true : false}
                             >
                                 {data?.type === 'create' ? 'Create' : 'Edit'}
                             </Button>

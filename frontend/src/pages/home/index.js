@@ -52,6 +52,7 @@ export default function Home(props) {
             <Route path='/detail-champion' component={DetailChampion}/>
             <Route path='/players' component={Players}/>
             <Route path="/" exact component={HomeLayout} />
+            <Route path='/detail-teams' component={DetailTeam} />
           </Switch>
         </Row>
       </Container>

@@ -13,6 +13,7 @@ import { fetcher } from '../../../api/swr';
 const Players = () => {
     const [visible, setVisible] = useState(false);
     const {data: dataPlayes} = useSWR('/players', fetcher);
+    const role = localStorage.getItem('userType');
 
     const handleClickButton = () => {
         setVisible(true);
@@ -26,13 +27,16 @@ const Players = () => {
                 className='header'
             >
                 <div className='title'>Danh sách cầu thủ</div>
-                <Button 
-                    size="large"
-                    type='primary' 
-                    icon={<PlusSquareOutlined/>}
-                    onClick={handleClickButton}
-                >
-                </Button>
+                {role === 'admin' && 
+                    <Button 
+                        size="large"
+                        type='primary' 
+                        icon={<PlusSquareOutlined/>}
+                        onClick={handleClickButton}
+                    >
+                    </Button>
+                }
+                
             </div>
 
             <DrawerWrapper 

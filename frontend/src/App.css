@@ -52,7 +52,7 @@
 }
 .home-content{
   background-color: #f1f2f7;
-  height: calc(100% - 60px);
+  height: calc(100% - 127px);
   padding: 30px;
   overflow: overlay;
   overscroll-behavior-y: none;

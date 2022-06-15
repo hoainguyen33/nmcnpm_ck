@@ -20,7 +20,7 @@ const initialDataTeam = {
 }
 
 const Card = (data) => {
-    console.log('data: ', data)
+    const role = localStorage.getItem('userType');
     const [visible, setVisible] = useState(false);
     const handleClick = () => {
         setVisible(true)
@@ -38,8 +38,11 @@ const Card = (data) => {
                     <Button  style={{ width: '100%'}} type="primary" shape="round">Xem chi tiết</Button>
                 </Link> 
             }
+            {role === 'admin' && <Button style={{margin: '10px 0px'}} type="primary" shape="round" onClick={handleClick}>
+                    Chỉnh sửa
+                </Button>
+            }
             
-            <Button style={{margin: '10px 0px'}} type="primary" shape="round" onClick={handleClick}>Chỉnh sửa</Button>
             <DrawerWrapper 
                 child={data?.type === 'home' ? 
                     <FormLeage setDisplay={setVisible} initialValue={initialDataHome} type={'edit'}/>

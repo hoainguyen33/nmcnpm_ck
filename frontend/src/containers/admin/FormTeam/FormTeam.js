@@ -42,6 +42,15 @@ const FormTeam = (data) => {
             }).catch(() => {
                 openNotification('error', 'Tạo đội bóng thất bại!')
             })
+            axiosClient.post('/signup', {
+                username: values?.name,
+                password: '123123123',
+                role: 'team'
+            }).then(() => {
+                openNotification('success', `Tạo tài khoản thành công: {username: ${values?.name}, password: 123123123`)
+            }).catch(() => {
+                openNotification('error', 'Tạo tài khoản thất bại!')
+            })
         } else {
             axiosClient.put(`/update-team/${data?.initialValue?.result?.team_info?.id}`, {
                 logo: logo,

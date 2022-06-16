@@ -18,12 +18,12 @@ const Card = (data) => {
     //teams
     const [showModal, setShowModal] = useState(false);
     const [teamSelected, setTeamSelected] = useState();
-    const { data: dataSeasonDetail } = useSWR(`/get-team/${data?.data.id}`, fetcher);
+    const { data: dataSeasonDetail } = useSWR((data?.type === 'home' ? '/get-season' : 'get-team') + `/${data?.data.id}`, fetcher);
     const { data: dataTeams } = useSWR('/teams', fetcher);
 
 
     const handleClick = () => {
-        setVisible(true)        
+        setVisible(true)     
     }
 
     // teams
@@ -46,13 +46,14 @@ const Card = (data) => {
             openNotification('success', 'Thêm đội bóng vào mùa giải thất bại!')
         })
     }
+
     const handleClickCardIdol = (value) => {
         setTeamSelected(value)
     }
     const checkCardActive = (value, item) => {
         return value?.indexOf(item.id) === -1 || !teamSelected ? true : false;
     };
-
+    
 
     return (
         <div className='wrapper-card'>
@@ -86,8 +87,8 @@ const Card = (data) => {
             
             <DrawerWrapper 
                 child={data?.type === 'home' ? 
-                    <FormLeage setDisplay={setVisible} initialValue={null} type={'edit'}/>
-                    : <FormTeam setDisplay={setVisible} initialValue={null} type={'edit'}/>
+                    <FormLeage setDisplay={setVisible} initialValue={dataSeasonDetail} type={'edit'} refetch={data?.refetch()}/>
+                    : <FormTeam setDisplay={setVisible} initialValue={dataSeasonDetail} refetch={data?.refetch()} type={'edit'}/>
                 }
                 display={visible}
                 setDisplay={setVisible}

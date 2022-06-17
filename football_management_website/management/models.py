@@ -21,6 +21,7 @@ class Season(models.Model):
   end_date = models.DateField()
   max_numbers_of_teams = models.PositiveIntegerField()
   rank = ArrayField(models.CharField(max_length=100), blank=True, null=True)
+  is_start = models.BooleanField(default=False)
   reported_by = models.ForeignKey(Account, on_delete=models.CASCADE)
   
   def __str__(self):
@@ -42,7 +43,7 @@ class Team(models.Model):
   
 class Player(models.Model):
   name = models.CharField(max_length=100)
-  image = models.CharField(max_length=100, null=True, blank=True)
+  image = models.CharField(max_length=10000, null=True, blank=True)
   age = models.PositiveIntegerField(null=True, blank=True)
   gender = models.CharField(max_length=5, null=True, blank=True)
   height = models.FloatField(null=True, blank=True)
@@ -54,8 +55,21 @@ class Player(models.Model):
   def __str__(self):
     return self.name
   
-    
+class Team_Player(models.Model):
+  team = models.ForeignKey(Team, on_delete=models.CASCADE)
+  player = models.ForeignKey(Player, on_delete=models.CASCADE) 
+  reported_by = models.ForeignKey(Account, on_delete=models.CASCADE)
+  
 class Season_Detail(models.Model):
   season = models.ForeignKey(Season, on_delete=models.CASCADE)
   team = models.ForeignKey(Team, on_delete=models.CASCADE)
+  total_points = models.PositiveIntegerField()
   reported_by = models.ForeignKey(Account, on_delete=models.CASCADE)
+  
+
+class Match(models.Model):
+  season = models.ForeignKey(Season, on_delete=models.CASCADE)
+  first_team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_1')
+  second_team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_2')
+  result = models.CharField(max_length=20)
+  match_day = models.DateField(null=True)

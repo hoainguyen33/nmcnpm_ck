@@ -2,11 +2,13 @@ import { Form, Input, DatePicker, Upload, Button, Row, Col, Spin } from 'antd';
 import './FormTeam.style.scss';
 import axiosClient from '../../../api/axiosClient';
 import { openNotification } from '../../../components/Notification/Notification';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getUrlFromFirebase } from '../.././../firebase/index';
+import axios from 'axios';
 
 
 const FormTeam = (data) => {
+    console.log('form team: ', data);
     const [logo, setLogo] = useState('');
     const [disable, setDisable] = useState(false);
 
@@ -16,7 +18,6 @@ const FormTeam = (data) => {
     const handleUpload = (e) => {
         setDisable(true)
        getUrlFromFirebase(e, (result) => {
-            console.log('result: ', result)
             if(result.success) {
                 setLogo(result.image)
                 setDisable(false)
@@ -41,16 +42,49 @@ const FormTeam = (data) => {
             }).catch(() => {
                 openNotification('error', 'Tạo đội bóng thất bại!')
             })
+            axiosClient.post('/signup', {
+                username: values?.name,
+                password: '123123123',
+                role: 'team'
+            }).then(() => {
+                openNotification('success', `Tạo tài khoản thành công: {username: ${values?.name}, password: 123123123`)
+            }).catch(() => {
+                openNotification('error', 'Tạo tài khoản thất bại!')
+            })
+        } else {
+            axiosClient.put(`/update-team/${data?.initialValue?.result?.team_info?.id}`, {
+                logo: logo,
+                coach: values?.catch,
+                max_numbers_of_players: Number(values?.maxNumber)
+            }).then(() => {
+                openNotification(
+                    'success',
+                    'Chỉnh sửa thành công!'
+                )
+                data?.setDisplay(false)
+                data?.refetch()
+            }).catch(() => {
+                openNotification(
+                    'error',
+                    'Chỉnh sửa thất bại!'
+                )
+            })
         }
     }
+
+    useEffect(() => {
+        if(data?.type === 'edit') {
+            setLogo(data?.initialValue?.result?.team_info?.logo ?? null)
+        }
+    }, [data])
     return (
         <div style={{height: '100%'}}>
             <Form
             layout='vertical'
             initialValues={ data?.initialValue && {
-                    name: data?.initialValue?.name || null,
-                    coach: data?.initialValue?.coach || null,
-                    urlImage: data?.initialValue?.urlImage || null
+                    name: data?.initialValue?.result?.team_info?.name || null,
+                    coach: data?.initialValue?.result?.team_info?.coach || null,
+                    maxNumber: Number(data?.initialValue?.result?.team_info?.max_numbers_of_players) || null
                 }
             }
             onFinish={onFinish}
@@ -113,8 +147,8 @@ const FormTeam = (data) => {
                                     boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
                                     padding: '10px'
                                 }}
-                            /> : (data?.initialValue?.urlImage && (
-                                <img src={data?.initialValue?.urlImage || null} 
+                            /> : (
+                                <img src={logo?.indexOf('http') > -1 ? logo : '/default-team-logo.png'} 
                                     style={{
                                         width: '150px',
                                         height: 'auto',
@@ -124,7 +158,7 @@ const FormTeam = (data) => {
                                         padding: '10px'
                                     }}
                                 />
-                            ))
+                            )
                         }
                     </Form.Item>
                 </div>

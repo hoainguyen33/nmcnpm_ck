@@ -21,7 +21,100 @@
         font-size: 20px;
         font-weight: bold;
     }
+    .idol-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100px;
+        background: #fafafa;
+        height: 130px;
+        border-radius: 5px;
+        padding: 20px 10px;
+        margin: 10px 0;
+        /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1); */
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        position: relative;
+        
+        .info-idol {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 15px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .avatar-idol{
+            border: 2px solid white;
+            margin-top: 20px;
+        }
+        .name-idol {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #000000;
+        }
+        .name-idol-add{
+            font-size: 0.8rem;
+            line-height: normal !important;
+            display: block;
+            margin: auto;
+        }
+        .contain-group {
+            margin-top: 10px;
+            .ant-tag{
+                margin: 0 5px;
+            }
+        }
+    }
 }
+
 .wrapper-card:hover {
     top: -10px;
 }
+.modal-add-idol{
+    width: 536px !important;
+    .ant-modal-content{
+      height: 80vh;
+      .ant-modal-title{
+        font-size: 1rem;
+        text-align: center;
+        text-transform: uppercase;
+      }
+      .ant-modal-body{
+        height: calc(80vh - 100px);
+        overflow: auto;
+        .add-idol-item{
+          border: none !important;
+          height: 130px;
+          width: 100px;
+          margin: 10px;
+          padding: 0;
+          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+          border-radius: 15px;
+
+          &:focus-within,&.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):focus-within{
+            box-shadow: none !important;
+          }
+          
+          &.ant-radio-button-wrapper:not(:first-child)::before{
+            width: 0;
+          }
+          &.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),&.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover{
+            background: transparent;
+            .add-idol-item{
+              background: #ff4d4f;
+            }
+          }
+        }
+      }
+      .ant-modal-footer{
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .ant-checkbox {
+      display: none !important;
+    }
+  }

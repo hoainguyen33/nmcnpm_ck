@@ -12,7 +12,6 @@ import { fetcher } from '../../api/swr'
 const HomeLayout = () => {
 
     const [visible, setVisible] = useState(false);
-
     const { data: dataSeason, mutate } = useSWR('/seasons', fetcher);
     const role = localStorage.getItem('userType');
     const handleClickButton = async () => {
@@ -34,17 +33,19 @@ const HomeLayout = () => {
                 }
                 
             </div>
+
             <DrawerWrapper 
-                child={<FormLeage setDisplay={setVisible} type='create' refetch={() => mutate()} initialValue={null}/>}
+                child={<FormLeage setDisplay={setVisible} type={'create'} refetch={() => mutate()} initialValue={null}/>}
                 display={visible}
                 setDisplay={setVisible}
             >
             </DrawerWrapper>
+            
             <Row>
                 {
                     dataSeason?.result?.map((item, idx) => (
                         <Col xs={24} md={8} lg={6}>
-                            <Card data={item} type="home" to={`/champions/${item.id}`} key={idx}></Card>
+                            <Card data={item} type="home" to={`/champions/${item.id}`} key={idx} refetch={() => mutate()} ></Card>
                         </Col>
                     ))
                 }

@@ -45,7 +45,7 @@ const TeamPage = () => {
                 {
                     dataTeam?.result.map((item, idx) => (
                         <Col xs={6}>
-                            <Card data={item} type="team" to={`/team/${item.id}`} key={idx}></Card>
+                            <Card data={item} type="team" to={`/team/${item.id}`} refetch={() => mutate()} key={idx} ></Card>
                         </Col>
                     ))
                 }

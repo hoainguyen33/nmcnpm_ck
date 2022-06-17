@@ -4,16 +4,19 @@ import './FormLeage.style.scss'
 import axiosClient from '../../../api/axiosClient';
 import { openNotification } from '../../../components/Notification/Notification';
 import { getUrlFromFirebase } from '../.././../firebase/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 const formatDate = 'YYYY/MM/DD';
 
 const FormLeage = (data) => {
+    console.log('form leage: ', data);
     const [logo, setLogo] = useState('');
     const [disable, setDisable] = useState(false);
-
+    const [ form ] = Form.useForm();
+    
     const disabledDate = (current) => {
         return current && current < moment().startOf('day');
     }
+
     const onCancel = () => {
         data.setDisplay(false)
     }
@@ -47,16 +50,44 @@ const FormLeage = (data) => {
             }).catch(() => {
                 openNotification('error', 'Tạo mùa giải thất bại!')
             })
+        } else {
+            axiosClient.put(`/update-season/${data?.initialValue?.result?.season_info?.id}`, {
+                logo: logo,
+                start_date: moment(values?.startTime).format('YYYY-MM-DD'),
+                end_date: moment(values?.endTime).format('YYYY-MM-DD'),
+                max_numbers_of_teams: Number(values?.maxNumber),
+            }).then(() => {
+                openNotification(
+                    'success',
+                    'Chỉnh sửa thành công!'
+                )
+                data?.setDisplay(false)
+                data?.refetch()
+            }).catch(() => {
+                openNotification(
+                    'error',
+                    'Chỉnh sửa thất bại!'
+                )
+            })
         }
     }
+
+    useEffect(() => {
+        if(data?.type === 'edit') {
+            setLogo(data?.initialValue?.result?.season_info?.logo ?? null)
+        }
+    }, [data])
+
     return (
         <div style={{height: '100%'}}>
             <Form
+            form={form}
             layout='vertical'
             initialValues={ data?.initialValue && {
-                    name: data?.initialValue?.name || null,
-                    startTime: moment(data?.initialValue?.startTime).local() || null,
-                    endTime: moment(data?.initialValue?.endTime).local() || null,
+                    name: data?.initialValue?.result?.season_info?.name || null,
+                    startTime: moment(data?.initialValue?.result?.season_info?.start_date).local() || null,
+                    endTime: moment(data?.initialValue?.result?.season_info?.end_date).local() || null,
+                    maxNumber: Number(data?.initialValue?.result?.season_info?.max_numbers_of_teams) || null
                 }
             }
             scrollToFirstError
@@ -77,7 +108,7 @@ const FormLeage = (data) => {
                         name='name'
                         rules={[{ required: true, message: 'Name required' }]}
                     >
-                        <Input/>
+                        <Input disabled={data?.type === 'create' ? false : true}/>
                     </Form.Item>
                     <Form.Item
                         label={'Ngày bắt đầu'}
@@ -146,8 +177,8 @@ const FormLeage = (data) => {
                                     boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
                                     padding: '10px'
                                 }}
-                            /> : (data?.initialValue?.urlImage && (
-                                <img src={data?.initialValue?.urlImage || null} 
+                            /> : (logo && (
+                                <img src={logo?.indexOf('http') > -1 ? logo : '/logoMu.png'} 
                                     style={{
                                         width: '150px',
                                         height: 'auto',

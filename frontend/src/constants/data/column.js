@@ -1,6 +1,7 @@
-import { Space, Button } from 'antd';
+import { Space } from 'antd';
 import ButtonEdit from '../../components/ButtonEdit/ButtonEdit';
 import ButtonDelete from '../../components/ButtonDelete/ButtonDelete';
+import PopoverChangeMatch from '../../components/PopoverChangeMatch/PopoverChangeMatch';
 
 export const columns = [
     {
@@ -234,7 +235,7 @@ export const columnSchedule = [
         align: 'center',
         render: (value, record) => {
             return (
-                <span>{value}</span>
+                <PopoverChangeMatch data={record} ></PopoverChangeMatch>
             )
         }
     }, {

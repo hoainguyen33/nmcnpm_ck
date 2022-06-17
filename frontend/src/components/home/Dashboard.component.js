@@ -28,13 +28,16 @@ export default function DashboardHome(props) {
     >
        <Link to="/home">
           <img
-            src={logo}
+            src='/logoMu.png'
             width={isShow ? "30": "40"}
             height={isShow ? "30": "40"}
+            style={{
+              objectFit: 'cover'
+            }}
             className="d-inline-block align-top"
             alt="Football Logo"
           />
-          {isShow || " CHELSEA FC"}
+          {isShow || " Football Manager"}
         </Link>
         <img
           src={isShow ? iconRight : iconMenu}

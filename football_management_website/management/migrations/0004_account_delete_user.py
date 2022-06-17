@@ -5,6 +5,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+
     dependencies = [
         ('management', '0003_alter_user_username'),
     ]

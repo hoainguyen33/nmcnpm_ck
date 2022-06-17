@@ -38,6 +38,15 @@ password: admin
  `python manage.py migrate`
 4. Chạy server dưới local
  `python manage.py runserver`
+### Frontend:
+1. setup
+    `npm install` or `yarn`
+2. Chạy dưới local
+    `npm start` or `yarn start`
+3. Deploy vercel
+    Tạo repo trên gitlab
+    Tạo tài khoản Vercel
+    Connect source gitlab trên vercel (tự deploy)
 ## Hướng dẫn deploy project lên Heroku
 Updating...
 ## Current status:

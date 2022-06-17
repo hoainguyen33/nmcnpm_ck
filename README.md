@@ -49,11 +49,3 @@ password: admin
     Connect source gitlab trên vercel (tự deploy)
 ## Hướng dẫn deploy project lên Heroku
 Updating...
-## Current status:
-- Xây dựng phần frontend.
-- Schema PostgreSQL.
-- Login/ Register.
-- CRUD cầu thủ
-## Future works
-- CRUD mùa giải 
-- CRUD đội bóng

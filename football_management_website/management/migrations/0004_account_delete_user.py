@@ -10,6 +10,7 @@ class Migration(migrations.Migration):
         ('management', '0003_alter_user_username'),
     ]
 
+
     operations = [
         migrations.CreateModel(
             name='Account',

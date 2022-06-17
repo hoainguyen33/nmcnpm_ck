@@ -47,5 +47,5 @@ password: admin
     Tạo repo trên gitlab
     Tạo tài khoản Vercel
     Connect source gitlab trên vercel (tự deploy)
-## Hướng dẫn deploy project lên Heroku
-Updating...
+## Hướng dẫn deploy server lên Heroku
+[Link hướng dẫn](https://devcenter.heroku.com/articles/deploying-python)

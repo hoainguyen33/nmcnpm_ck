@@ -1,24 +1,47 @@
 import './SignUp.style.css';
 import {
     Form,
-    Button
+    Button,
+    Alert
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-// import RegisterAction from '../../actions/account/register'
+import RegisterAction from '../../actions/account/register'
 
 
 export default function SignUp(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
+    const [message, setMessage] = useState('');
     const dispatch = useDispatch()
+
+    const action = (mes, redirect) => {
+        if (redirect) {
+            props.history.push("/login")
+        } else {
+            setMessage(mes)
+        }
+    }
 
     const register = (e) => {
         e.preventDefault();
-        // dispatch(RedisterAction(email, password));
+        action("", false)
+        if (!email) {
+            action("Username không được để trống", false)
+            return
+        }
+        if (password.length < 8) {
+            action("Mật khẩu phải lớn hơn 8 ký tự", false)
+            return
+        }
+        if (password !== rePassword) {
+            action("Confirm Password phải giống với Password", false)
+            return
+        } 
+        dispatch(RegisterAction(email, password, action));
     }
 
     return (
@@ -26,17 +49,22 @@ export default function SignUp(props) {
             className="form-center"
             onSubmit={register}
         >
+            {message && 
+            <Alert>
+                {message}
+                </Alert>
+            }
             <h3>Sign Up</h3>
             <Form.Group
                 className="form-item mb-3 fadeIn second"
                 controlId="formBasicEmail"
-            >
+            > 
                 <Form.Label>
-                    Email address
+                    Username
                 </Form.Label>
                 <Form.Control
-                    type="email"
-                    placeholder="Enter email"
+                    type="text"
+                    placeholder="Enter username"
                     value={email}
                     onChange={e=>setEmail(e.target.value)}
                 />

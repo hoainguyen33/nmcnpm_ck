@@ -1,7 +1,8 @@
 import './SignIn.style.css';
 import {
     Form,
-    Button
+    Button,
+    Alert
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
@@ -13,29 +14,44 @@ import LoginAction from '../../actions/account/login'
 export default function SignIn(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+    const [remember, setRemember] = useState(false);
     const dispatch = useDispatch()
+
+    const action = (mes, redirect) => {
+        if (redirect) {
+           
+        } else {
+            setMessage(mes)
+        }
+    }
 
     const login = (e) => {
         e.preventDefault();
-        dispatch(LoginAction(email, password));
+        action("", false)
+        dispatch(LoginAction(email, password, remember, action));
     }
 
     return (
         <Form
             className="form-center"
             onSubmit={login}
-        >
+        >   {message && 
+            <Alert>
+                {message}
+             </Alert>
+            }
             <h3>Sign In</h3>
             <Form.Group
                 className="form-item mb-3 fadeIn second"
                 controlId="formBasicEmail"
             >
                 <Form.Label>
-                    Email address
+                    Username
                 </Form.Label>
                 <Form.Control
                     type="text"
-                    placeholder="Enter email"
+                    placeholder="Enter username"
                     value={email}
                     onChange={e=>setEmail(e.target.value)}
                 />
@@ -61,6 +77,7 @@ export default function SignIn(props) {
                  <Form.Check
                     type="checkbox"
                     label="Remember me"
+                    onChange={e=>setRemember(!remember)}
                 />
             </Form.Group>
             <Button

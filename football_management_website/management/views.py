@@ -107,6 +107,7 @@ def update_account(request, id):
           elif key != 'role':
             setattr(account, key, value)
         account.save()
+        print('Ha12')
         return JsonResponse(status=status.HTTP_403_FORBIDDEN, data={'status': status.HTTP_403_FORBIDDEN, 'success': False, 'message': 'Không thể thay đổi vai trò admin'})
       
       # must not change role to admin if admin is exist

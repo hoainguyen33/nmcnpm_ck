@@ -21,6 +21,7 @@ def signup(request):
     role = body['role']
     
     if len(password) < 8:
+      print('haha1')
       return JsonResponse(status=status.HTTP_403_FORBIDDEN, data={'status': status.HTTP_403_FORBIDDEN, 'success': False, 'message': "Mật khẩu không hợp lệ"})
     
     user_obj = Account(username=username, password=password, role=role) 
@@ -38,8 +39,9 @@ def signup(request):
     user_obj.password = hashedPassword
     user_obj.save()
     if user_obj.role == 'admin':
+      print('haha2')
       return JsonResponse(status=status.HTTP_201_CREATED, data={"status": status.HTTP_201_CREATED, "success": True, "message": "Đăng kí admin thành công", "details" : {'username': user_obj.username, 'role': user_obj.role}})
-    
+    print('haha3')
     return JsonResponse(status=status.HTTP_201_CREATED, data={"status": status.HTTP_201_CREATED, "success": True, 'message': "Đăng kí người dùng thành công", 'details': {'username': user_obj.username, 'role': user_obj.role}})
 
 #login 
@@ -59,12 +61,14 @@ def login(request):
     
     auth_token = jwt.encode({'id': user.id}, settings.JWT_SECRET_KEY, algorithm="HS256")
     data = {"username": user.username, "role": user.role, "access-token": auth_token}
+    print('haha5')
     return JsonResponse(status=status.HTTP_200_OK, data={"status": status.HTTP_200_OK, "success": True, 'message': 'Đăng nhập thành công', 'details': data})  
 
 def get_all_users(request):
   if request.method == 'GET':
     count = Account.objects.all().count()
     account_list = Account.objects.all().values('id', 'username', 'role')
+    print('haha6')
     return JsonResponse(status=status.HTTP_200_OK, data={'status': status.HTTP_200_OK, 'success': True, 'result': list(account_list), 'total_users': count})
 
 def get_user(request, id):
@@ -136,6 +140,7 @@ def delete_account(request, id):
       del_account = Account.objects.get(pk=id)
       del_account.delete()
       if del_account.role == 'admin':
+        print('haha9')
         return JsonResponse(status=status.HTTP_200_OK, data={"status": status.HTTP_200_OK, 'success': True, 'message': 'Hiện tại đã xóa tài khoản admin. Vui lòng thay thế bằng tài khoản khác'})
       
       return JsonResponse(status=status.HTTP_200_OK, data={"status": status.HTTP_200_OK, 'success': True, 'message': 'Xóa tài khoản thành công'})  

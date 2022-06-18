@@ -32,7 +32,7 @@ password: admin
 ### Backend:
 1. Clone repo 
 2. Setup môi trường ảo
- `pip install virtualenv` tạo mtr ảo: python -m <tên mtruong ảo> activate: <tên mtr ảo>/Scripts/activate
+ `pip install virtualenv` tạo mtr ảo: `python -m <tên mtruong ảo> activate: <tên mtr ảo>/Scripts/activate`
 3. Migrate database
  `python manage.py makemigrations`
  `python manage.py migrate`

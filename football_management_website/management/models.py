@@ -73,3 +73,5 @@ class Match(models.Model):
   second_team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_2')
   result = models.CharField(max_length=20)
   match_day = models.DateField(null=True)
+
+
